@@ -9,9 +9,8 @@ import { TextColorDirective, CardComponent, CardHeaderComponent, CardBodyCompone
     imports: [TextColorDirective, CardComponent, CardHeaderComponent, CardBodyComponent, RowComponent, forwardRef(() => ThemeColorComponent)]
 })
 export class ColorsComponent implements OnInit, AfterViewInit {
-
+  @Inject(DOCUMENT) private document: Document;
   constructor(
-    @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2
   ) {
   }

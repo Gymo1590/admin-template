@@ -7,286 +7,172 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-speedometer' },
     badge: {
       color: 'info',
-      text: 'NEW'
+      text: 'MAIN'
     }
   },
   {
     title: true,
-    name: 'Theme'
+    name: 'Sokoni Management'
   },
   {
-    name: 'Colors',
-    url: '/theme/colors',
+    name: 'Create Market',
+    url: '/markets',
     iconComponent: { name: 'cil-drop' }
   },
   {
-    name: 'Typography',
-    url: '/theme/typography',
+    name: 'Create Vendor',
+    url: '/vendors',
     linkProps: { fragment: 'headings' },
     iconComponent: { name: 'cil-pencil' }
   },
   {
-    name: 'Components',
-    title: true
-  },
-  {
-    name: 'Base',
-    url: '/base',
+    name: 'Loan Management',
+    url: '/loans',
     iconComponent: { name: 'cil-puzzle' },
     children: [
       {
-        name: 'Accordion',
-        url: '/base/accordion',
+        name: 'Approve Loan',
+        url: '/loans/approve',
         icon: 'nav-icon-bullet'
       },
       {
-        name: 'Breadcrumbs',
-        url: '/base/breadcrumbs',
+        name: 'Disburse Loans',
+        url: '/loans/disburse',
         icon: 'nav-icon-bullet'
       },
       {
-        name: 'Cards',
-        url: '/base/cards',
+        name: 'Active Loans',
+        url: '/loans/active-view',
         icon: 'nav-icon-bullet'
       },
       {
-        name: 'Carousel',
-        url: '/base/carousel',
+        name: 'Closed Loans',
+        url: '/loans/closed-view',
         icon: 'nav-icon-bullet'
       },
       {
-        name: 'Collapse',
-        url: '/base/collapse',
+        name: 'Approve Repayment',
+        url: '/loans/repayment-approval',
         icon: 'nav-icon-bullet'
       },
-      {
-        name: 'List Group',
-        url: '/base/list-group',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Navs & Tabs',
-        url: '/base/navs',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Pagination',
-        url: '/base/pagination',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Placeholder',
-        url: '/base/placeholder',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Popovers',
-        url: '/base/popovers',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Progress',
-        url: '/base/progress',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Spinners',
-        url: '/base/spinners',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Tables',
-        url: '/base/tables',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Tabs',
-        url: '/base/tabs',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Tooltips',
-        url: '/base/tooltips',
-        icon: 'nav-icon-bullet'
-      }
     ]
   },
-  {
-    name: 'Buttons',
-    url: '/buttons',
-    iconComponent: { name: 'cil-cursor' },
-    children: [
-      {
-        name: 'Buttons',
-        url: '/buttons/buttons',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Button groups',
-        url: '/buttons/button-groups',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Dropdowns',
-        url: '/buttons/dropdowns',
-        icon: 'nav-icon-bullet'
-      }
-    ]
-  },
-  {
-    name: 'Forms',
-    url: '/forms',
-    iconComponent: { name: 'cil-notes' },
-    children: [
-      {
-        name: 'Form Control',
-        url: '/forms/form-control',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Select',
-        url: '/forms/select',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Checks & Radios',
-        url: '/forms/checks-radios',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Range',
-        url: '/forms/range',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Input Group',
-        url: '/forms/input-group',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Floating Labels',
-        url: '/forms/floating-labels',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Layout',
-        url: '/forms/layout',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Validation',
-        url: '/forms/validation',
-        icon: 'nav-icon-bullet'
-      }
-    ]
-  },
-  {
-    name: 'Charts',
-    iconComponent: { name: 'cil-chart-pie' },
-    url: '/charts'
-  },
-  {
-    name: 'Icons',
-    iconComponent: { name: 'cil-star' },
-    url: '/icons',
-    children: [
-      {
-        name: 'CoreUI Free',
-        url: '/icons/coreui-icons',
-        icon: 'nav-icon-bullet',
-        badge: {
-          color: 'success',
-          text: 'FREE'
-        }
-      },
-      {
-        name: 'CoreUI Flags',
-        url: '/icons/flags',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'CoreUI Brands',
-        url: '/icons/brands',
-        icon: 'nav-icon-bullet'
-      }
-    ]
-  },
-  {
-    name: 'Notifications',
-    url: '/notifications',
-    iconComponent: { name: 'cil-bell' },
-    children: [
-      {
-        name: 'Alerts',
-        url: '/notifications/alerts',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Badges',
-        url: '/notifications/badges',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Modal',
-        url: '/notifications/modal',
-        icon: 'nav-icon-bullet'
-      },
-      {
-        name: 'Toast',
-        url: '/notifications/toasts',
-        icon: 'nav-icon-bullet'
-      }
-    ]
-  },
-  {
-    name: 'Widgets',
-    url: '/widgets',
-    iconComponent: { name: 'cil-calculator' },
-    badge: {
-      color: 'info',
-      text: 'NEW'
-    }
-  },
+ 
+
   {
     title: true,
-    name: 'Extras'
+    name: 'Kilimo Management'
   },
   {
-    name: 'Pages',
-    url: '/login',
-    iconComponent: { name: 'cil-star' },
+    name: 'Create Amcos group',
+    url: '/amcos',
+    iconComponent: { name: 'cil-drop' }
+  },
+  {
+    name: 'Create Amcos Member',
+    url: '/farmers',
+    linkProps: { fragment: 'headings' },
+    iconComponent: { name: 'cil-pencil' }
+  },
+  {
+    name: 'Loan Management',
+    url: '/loans',
+    iconComponent: { name: 'cil-puzzle' },
     children: [
       {
-        name: 'Login',
-        url: '/login',
+        name: 'Approve Loan',
+        url: '/loans',
         icon: 'nav-icon-bullet'
       },
       {
-        name: 'Register',
-        url: '/register',
+        name: 'Disburse Loans',
+        url: '/loans',
         icon: 'nav-icon-bullet'
       },
       {
-        name: 'Error 404',
-        url: '/404',
+        name: 'Active Loans',
+        url: '/loans',
         icon: 'nav-icon-bullet'
       },
       {
-        name: 'Error 500',
-        url: '/500',
+        name: 'Closed Loans',
+        url: '/loans',
         icon: 'nav-icon-bullet'
-      }
+      },
+      {
+        name: 'Approve Repayment',
+        url: '/loans',
+        icon: 'nav-icon-bullet'
+      },
     ]
-  },
+  },   
+
   {
     title: true,
-    name: 'Links',
-    class: 'mt-auto'
+    name: 'Maisha Management'
+  },
+ 
+  {
+    name: 'Reset PIN',
+    url: '/maisha',
+    linkProps: { fragment: 'headings' },
+    iconComponent: { name: 'cil-pencil' }
   },
   {
-    name: 'Docs',
-    url: 'https://coreui.io/angular/docs/5.x/',
-    iconComponent: { name: 'cil-description' },
-    attributes: { target: '_blank' }
-  }
+    name: 'Loan Management',
+    url: '/loans',
+    iconComponent: { name: 'cil-puzzle' },
+    children: [
+      {
+        name: 'Approve Loan',
+        url: '/loans',
+        icon: 'nav-icon-bullet'
+      },
+      {
+        name: 'Disburse Loans',
+        url: '/loans',
+        icon: 'nav-icon-bullet'
+      },
+      {
+        name: 'Active Loans',
+        url: '/loans',
+        icon: 'nav-icon-bullet'
+      },
+      {
+        name: 'Closed Loans',
+        url: '/loans',
+        icon: 'nav-icon-bullet'
+      },
+      {
+        name: 'Approve Repayment',
+        url: '/loans',
+        icon: 'nav-icon-bullet'
+      },
+    ]
+  },
+     
+  {
+    name: 'Admin Panel',
+    title: true
+  },
+  {
+    name: 'Users',
+    url: '/users',
+    icon: 'nav-icon-bullet'
+  },
+  {
+    name: 'Roles',
+    url: '/users',
+    icon: 'nav-icon-bullet'
+  },
+  {
+    name: 'Permissions',
+    url: '/users',
+    icon: 'nav-icon-bullet'
+  },
+  {
+    name: 'System Logs',
+    url: '/users',
+    icon: 'nav-icon-bullet'
+  },
 ];
