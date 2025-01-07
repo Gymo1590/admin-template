@@ -1,0 +1,50 @@
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.step {
+  text-align: center;
+  position: relative;
+}
+
+.step .circle {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 2px solid #ccc;
+  color: #777;
+  font-weight: bold;
+}
+
+.step.active .circle {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.label {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #777;
+}
+
+.step.active .label {
+  color: #007bff;
+  font-weight: 500;
+}
+
+.divider {
+  flex-grow: 1;
+  height: 2px;
+  background-color: #ccc;
+  margin: 0 10px;
+}
+
+.step.active + .divider {
+  background-color: #007bff;
+}

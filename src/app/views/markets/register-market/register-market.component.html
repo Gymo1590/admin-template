@@ -1,0 +1,55 @@
+<div class="stepper">
+  <div class="step" [class.active]="currentStep === 1">
+    <div class="circle">1</div>
+    <div class="label">Market Details</div>
+  </div>
+  <div class="divider"></div>
+  <div class="step" [class.active]="currentStep === 2">
+    <div class="circle">2</div>
+    <div class="label">Zones</div>
+  </div>
+  <div class="divider"></div>
+  <div class="step" [class.active]="currentStep === 3">
+    <div class="circle">3</div>
+    <div class="label">TimeSlots</div>
+  </div>
+  <div class="divider"></div>
+  <div class="step" [class.active]="currentStep === 4">
+    <div class="circle">4</div>
+    <div class="label">Leaders</div>
+  </div>
+</div>
+
+<!-- Step Content -->
+<div class="step-content">
+  <app-market-details
+    *ngIf="currentStep === 1"
+    [mode]="mode"
+    (formSubmit)="updateFormData('marketDetails', $event)">
+  </app-market-details>
+
+  <app-market-zones
+    *ngIf="currentStep === 2"
+    [mode]="mode"
+    (formSubmit)="updateFormData('zones', $event)">
+  </app-market-zones>
+
+  <app-market-time-slots
+    *ngIf="currentStep === 3"
+    [mode]="mode"
+    (formSubmit)="updateFormData('timeSlots', $event)">
+  </app-market-time-slots>
+
+  <app-market-leaders
+    *ngIf="currentStep === 4"
+    [mode]="mode"
+    (formSubmit)="updateFormData('leaders', $event)">
+  </app-market-leaders>
+</div>
+
+<!-- Navigation Buttons -->
+<div class="actions">
+  <button (click)="prevStep()" [disabled]="currentStep === 1">Back</button>
+  <button (click)="nextStep()" *ngIf="currentStep < 4">Next</button>
+  <button (click)="submitData()" *ngIf="currentStep === 4">Submit</button>
+</div>
