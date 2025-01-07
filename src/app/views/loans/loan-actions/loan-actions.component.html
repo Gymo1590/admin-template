@@ -52,10 +52,13 @@
                 <button class="view" mat-menu-item (click)="viewLoan(loan)">
                   <mat-icon>visibility</mat-icon> View
                 </button>
-                <button class="accept" mat-menu-item (click)="editLoan(loan)">
+                <button *ngIf="this.action === 'approve' || this.action === 'repayment-approval'" class="accept" mat-menu-item (click)="editLoan(loan)">
                   <mat-icon>check</mat-icon> Approve
                 </button>
-                <button class="reject" mat-menu-item (click)="toggleLoanStatus(loan)">
+                <button *ngIf="this.action === 'disburse' " class="accept" mat-menu-item (click)="editLoan(loan)">
+                  <mat-icon>check</mat-icon> Disburse
+                </button>
+                <button *ngIf="this.action === 'approve'  || this.action === 'repayment-approval'" class="reject" mat-menu-item (click)="toggleLoanStatus(loan)">
                   <mat-icon>cancel</mat-icon>Reject
                 </button>
               </mat-menu>

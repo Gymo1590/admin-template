@@ -48,7 +48,7 @@ export const routes: Routes = [
         path: 'repayment-approval',
         loadComponent: () => import('./loan-actions/loan-actions.component').then(m => m.LoanActionsComponent),
         data: {
-          title: 'View Closed'
+          title: 'View Repayment'
         }
       },
        

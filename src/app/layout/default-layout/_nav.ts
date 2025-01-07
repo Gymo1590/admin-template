@@ -73,39 +73,39 @@ export const navItems: INavData[] = [
     url: '/farmers',
     linkProps: { fragment: 'headings' },
     iconComponent: { name: 'cil-pencil' }
-  },
-  {
+  },{
     name: 'Loan Management',
     url: '/loans',
     iconComponent: { name: 'cil-puzzle' },
     children: [
       {
         name: 'Approve Loan',
-        url: '/loans',
+        url: '/loans/approve',
         icon: 'nav-icon-bullet'
       },
       {
         name: 'Disburse Loans',
-        url: '/loans',
+        url: '/loans/disburse',
         icon: 'nav-icon-bullet'
       },
       {
         name: 'Active Loans',
-        url: '/loans',
+        url: '/loans/active-view',
         icon: 'nav-icon-bullet'
       },
       {
         name: 'Closed Loans',
-        url: '/loans',
+        url: '/loans/closed-view',
         icon: 'nav-icon-bullet'
       },
       {
         name: 'Approve Repayment',
-        url: '/loans',
+        url: '/loans/repayment-approval',
         icon: 'nav-icon-bullet'
       },
     ]
-  },   
+  },
+ 
 
   {
     title: true,
@@ -117,39 +117,39 @@ export const navItems: INavData[] = [
     url: '/maisha',
     linkProps: { fragment: 'headings' },
     iconComponent: { name: 'cil-pencil' }
-  },
-  {
+  },{
     name: 'Loan Management',
     url: '/loans',
     iconComponent: { name: 'cil-puzzle' },
     children: [
       {
         name: 'Approve Loan',
-        url: '/loans',
+        url: '/loans/approve',
         icon: 'nav-icon-bullet'
       },
       {
         name: 'Disburse Loans',
-        url: '/loans',
+        url: '/loans/disburse',
         icon: 'nav-icon-bullet'
       },
       {
         name: 'Active Loans',
-        url: '/loans',
+        url: '/loans/active-view',
         icon: 'nav-icon-bullet'
       },
       {
         name: 'Closed Loans',
-        url: '/loans',
+        url: '/loans/closed-view',
         icon: 'nav-icon-bullet'
       },
       {
         name: 'Approve Repayment',
-        url: '/loans',
+        url: '/loans/repayment-approval',
         icon: 'nav-icon-bullet'
       },
     ]
   },
+ 
      
   {
     name: 'Admin Panel',

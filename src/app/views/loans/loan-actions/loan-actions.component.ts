@@ -10,9 +10,16 @@ import { LoanService } from '../loan-service.service';
 
 @Component({
   selector: 'app-loan-actions',
-  imports:  [CommonModule,MatMenuModule,MatButtonModule,MatIconModule,FormsModule],
   templateUrl: './loan-actions.component.html',
-  styleUrl: './loan-actions.component.scss'
+  styleUrl: './loan-actions.component.scss',
+  imports:[
+    CommonModule,
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    
+  ]
 })
 export class LoanActionsComponent implements OnInit{
  data: LoanDataInterface[] = [];

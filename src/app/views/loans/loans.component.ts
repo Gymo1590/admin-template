@@ -8,9 +8,15 @@ import { LoanDataInterface } from './loan.data.interface';
 
 @Component({
   selector: 'app-loans',
-  imports:  [CommonModule,MatMenuModule,MatButtonModule,MatIconModule,FormsModule],
   templateUrl: './loans.component.html',
-  styleUrl: './loans.component.scss'
+  styleUrl: './loans.component.scss',
+  imports:[
+    CommonModule,
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule
+  ]
 })
 export class LoansComponent {
   data: LoanDataInterface[] = [];

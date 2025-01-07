@@ -5,11 +5,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MarketDataInterfce } from './markets.data.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-markets',
-  imports:  [CommonModule,MatMenuModule,MatButtonModule,MatIconModule,FormsModule],
   templateUrl: './markets.component.html',
-  styleUrl: './markets.component.scss'
+  styleUrl: './markets.component.scss',
+  imports:[
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    FormsModule,
+    RouterModule,
+  ]
 })
 export class MarketsComponent {
   data: MarketDataInterfce[] = [];
@@ -30,7 +38,7 @@ export class MarketsComponent {
   ];
   
 
-  constructor() {}
+  constructor(private router:Router, private activated:ActivatedRoute) {}
 
   ngOnInit(): void {
     this.fetchData();
@@ -73,7 +81,10 @@ export class MarketsComponent {
     this.calculatePagination();
   }
   
+  createMarket(){
+    this.router.navigate(['markets/create'], { relativeTo: this.activated });
 
+  }
   calculatePagination(): void {
     this.totalPages = Array(Math.ceil(this.filteredData.length / this.pageSize))
       .fill(0)
