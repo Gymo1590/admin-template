@@ -1,0 +1,21 @@
+.details{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.custom-button {
+    flex: 30%; 
+    height: 100%;  
+    background-color: blue;  
+    border-radius: 8px;  
+    color: white;  
+    border: none;  
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    font-weight: bold;  
+    cursor: pointer; 
+  }
+  .custom-button:hover {
+    background-color: #0056b3;  
+  }
+  

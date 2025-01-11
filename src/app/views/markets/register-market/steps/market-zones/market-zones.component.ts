@@ -28,15 +28,52 @@ export class MarketZonesComponent implements OnInit {
 
   zoneForm!: FormGroup;
 
-  productsList: string[] = [
-    'Matunda', 'Mboga', 'Nafaka', 'Viungo', 'Samaki wa kukaushwa', 'Biashara Mchanganyiko',
-    'Pembejeo za kilimo', 'Vifaa vya umeme', 'Kuku', 'Vifaa vya ujenzi', 'DAGAA',
-    'SAMAKI WABICHI', 'NYAMA NG\'OMBE', 'NYAMA MBUZI', 'CHAKULA', 'UTUMBO',
-    'Nauza maji', 'UZAJI WA MAFUTA YA KULA', 'MIHOGO', 'MATUNDA YALIYOKAUSHWA',
-    'NDIZI', 'NAZI', 'Maziwa', 'VIAZI', 'VIGUNGASHIO NA BIDHA NYINGINE',
-    'KUUZA CHAKULA', 'Zinginezo (bainisha)', 'MAGIMBI', 'TAXI DRIVER',
-    'WAUZA NGUO', 'Vingamuzi vya magari', 'Ofisi'
+  // Define product keys and labels
+  productKeys = [
+    'matunda', 'mboga', 'nafaka', 'viungo', 'samakiWaKukaushwa',
+    'biasharaMchanganyiko', 'pembejeoZaKilimo', 'vifaaVyaUmeme', 'kuku',
+    'vifaaVyaUjenzi', 'dagaa', 'samakiWabichi', 'nyamaNgombe',
+    'nyamaMbuzi', 'chakula', 'utumbo', 'nauzaMaji', 'mafutaYaKula',
+    'mihogo', 'matundaYaliyokaushwa', 'ndizi', 'nazi', 'maziwa',
+    'viazi', 'vifungashioNaBidhaaNyingine', 'kuuzaChakula',
+    'zinginezo', 'magimbi', 'taxiDriver', 'wauzaNguo',
+    'vingamuziVyaMagari', 'ofisi'
   ];
+
+  productLabels: { [key: string]: string } = {
+    matunda: 'Matunda',
+    mboga: 'Mboga',
+    nafaka: 'Nafaka',
+    viungo: 'Viungo',
+    samakiWaKukaushwa: 'Samaki wa kukaushwa',
+    biasharaMchanganyiko: 'Biashara Mchanganyiko',
+    pembejeoZaKilimo: 'Pembejeo za kilimo',
+    vifaaVyaUmeme: 'Vifaa vya umeme',
+    kuku: 'Kuku',
+    vifaaVyaUjenzi: 'Vifaa vya ujenzi',
+    dagaa: 'DAGAA',
+    samakiWabichi: 'Samaki Wabichi',
+    nyamaNgombe: "Nyama Ng'ombe",
+    nyamaMbuzi: 'Nyama Mbuzi',
+    chakula: 'Chakula',
+    utumbo: 'Utumbo',
+    nauzaMaji: 'Nauza Maji',
+    mafutaYaKula: 'Mafuta ya Kula',
+    mihogo: 'Mihogo',
+    matundaYaliyokaushwa: 'Matunda Yalikauka',
+    ndizi: 'Ndizi',
+    nazi: 'Nazi',
+    maziwa: 'Maziwa',
+    viazi: 'Viazi',
+    vifungashioNaBidhaaNyingine: 'Vigungashio na Bidhaa Nyingine',
+    kuuzaChakula: 'Kuuza Chakula',
+    zinginezo: 'Zinginezo',
+    magimbi: 'Magimbi',
+    taxiDriver: 'Taxi Driver',
+    wauzaNguo: 'Wauza Nguo',
+    vingamuziVyaMagari: 'Vingamuzi vya Magari',
+    ofisi: 'Ofisi'
+  };
 
   constructor(private fb: FormBuilder) {}
 
@@ -49,7 +86,7 @@ export class MarketZonesComponent implements OnInit {
 
   initializeForm() {
     this.zoneForm = this.fb.group({
-      zones: this.fb.array([this.createZone()])
+      zones: this.fb.array([this.createZone()]),  
     });
   }
 
@@ -60,15 +97,15 @@ export class MarketZonesComponent implements OnInit {
   createZone(): FormGroup {
     return this.fb.group({
       zoneName: ['', Validators.required],
-      products: this.fb.group(
-        this.productsList.reduce((acc: { [key: string]: any }, product: string) => {
-          acc[product] = [false];  // Default all checkboxes to unchecked
+      productList: this.fb.group(
+        this.productKeys.reduce((acc, key) => {
+          acc[key] = [false];
           return acc;
-        }, {})
+        }, {} as { [key: string]: any })
       ),
       leaderName: ['', Validators.required],
       leaderPhone: ['', Validators.required],
-      leaderPhoneAlt: ['']
+      leaderPhoneAlt: [''],
     });
   }
 

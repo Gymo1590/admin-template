@@ -1,128 +1,55 @@
-<div class="container mt-4">
-   
-    <form [formGroup]="zoneForm" (ngSubmit)="submitForm()">
-  
-      <!-- Add Zone Button -->
-      <div class="text-end mb-4">
-        <button mat-raised-button color="primary" type="button" (click)="addZone()">
-          <mat-icon>add</mat-icon> Add Zone
-        </button>
-      </div>
-  
-      <div *ngFor="let zone of zones.controls; let i = index" [formGroupName]="i" class="zone-section mb-5 border-bottom pb-3">
-        <p><strong>Kwa kila Zoni iliyopo tafadhali toa taarifa zifuatazo:</strong></p>
-  
-        <!-- Zone Name -->
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Jina Ya Zoni</mat-label>
-          <input matInput formControlName="zoneName" placeholder="Jina Ya Zoni......">
-        </mat-form-field>
-  
-        <!-- Products Section (Hardcoded Checkboxes) -->
-        <p class="mt-3"><strong>Bidhaa zinazouzwa:</strong></p>
-        <div class="row" formGroupName="products">
-          <div class="col-md-3">
-            <mat-checkbox formControlName="Matunda">Matunda</mat-checkbox>
+<form *ngIf="zoneForm" [formGroup]="zoneForm" (ngSubmit)="submitForm()">
+  <div formArrayName="zones">
+    <div *ngFor="let zone of zones.controls; let i = index" [formGroupName]="i" class="zone-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-10">
+            <div class="form-group">
+              <mat-form-field appearance="outline" >
+                <mat-label>Jina Ya Zoni</mat-label>
+                <input matInput formControlName="zoneName" placeholder="Jina Ya Zoni......">
+              </mat-form-field>
           </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="Mboga">Mboga</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="Nafaka">Nafaka</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="Viungo">Viungo</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="SamakiKukaushwa">Samaki wa kukaushwa</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="BiasharaMchanganyiko">Biashara Mchanganyiko</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="PembejeoKilimo">Pembejeo za kilimo</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="VifaaUmeme">Vifaa vya umeme</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="Kuku">Kuku</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="Ujenzi">Vifaa vya ujenzi</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="DAGAA">DAGAA</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="SAMAKIWABICHI">Samaki Wabichi</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="NYAMANGO">Nyama Ng'ombe</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="NYAMAMBUZI">Nyama Mbuzi</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="CHAKULA">Chakula</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="UTUMBO">Utumbo</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="NauzaMaji">Nauza Maji</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="MAFUTA">Mafuta</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="MIHOGO">Mihogo</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="MATUNDAKAVU">Matunda Yalikauka</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="NDIZI">Ndizi</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="NAZI">Nazi</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="MAZIWA">Maziwa</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="VIAZI">Viazi</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="VIGUNGASHIO">Vigungashio</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="KUUZACHAKULA">Kuuza Chakula</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="Zinginezo">Zinginezo</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="MAGIMBI">Magimbi</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="TAXI">Taxi Driver</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="WAUZANGUO">Wauza Nguo</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="Vingamuzi">Vingamuzi</mat-checkbox>
-          </div>
-          <div class="col-md-3">
-            <mat-checkbox formControlName="Ofisi">Ofisi</mat-checkbox>
+          
+          <div class="col-2 d-flex justify-content-end  ">
+            <button 
+              class="btn btn-dark btn-block text-white fw-bold" 
+              type="button" 
+              (click)="addZone()">
+              Add Zone
+            </button>
           </div>
         </div>
       </div>
-  
-      <div class="mt-4">
-        <button mat-raised-button color="accent" type="submit">Submit</button>
+      
+      
+
+      <p class="mt-3"><strong>Bidhaa zinazouzwa:</strong></p>
+      <div class="row" formGroupName="productList">
+        <div class="col-md-3" *ngFor="let product of productKeys">
+          <mat-checkbox [formControlName]="product">{{ productLabels[product] }}</mat-checkbox>
+        </div>
       </div>
-    </form>
+
+      <div class="row details">
+        <mat-form-field appearance="outline" class="col-md-3">
+          <mat-label>Leader Name</mat-label>
+          <input matInput formControlName="leaderName" placeholder=" ">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-md-3">
+          <mat-label>Leader Phone</mat-label>
+          <input matInput formControlName="leaderPhone" placeholder=" ">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-md-3">
+          <mat-label>Leader Phone Alt</mat-label>
+          <input matInput formControlName="leaderPhoneAlt" placeholder=" ">
+        </mat-form-field>
+      </div>
+
+      <button mat-button color="warn" (click)="removeZone(i)" *ngIf="zones.length > 1">Remove Zone</button>
+    </div>
   </div>
-  
+
+
+  <button mat-raised-button color="accent" type="submit">Submit</button>
+</form>
