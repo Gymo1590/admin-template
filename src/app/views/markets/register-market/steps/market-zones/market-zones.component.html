@@ -1,55 +1,69 @@
-<form *ngIf="zoneForm" [formGroup]="zoneForm" (ngSubmit)="submitForm()">
-  <div formArrayName="zones">
-    <div *ngFor="let zone of zones.controls; let i = index" [formGroupName]="i" class="zone-section">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-10">
-            <div class="form-group">
-              <mat-form-field appearance="outline" >
-                <mat-label>Jina Ya Zoni</mat-label>
-                <input matInput formControlName="zoneName" placeholder="Jina Ya Zoni......">
-              </mat-form-field>
-          </div>
-          
-          <div class="col-2 d-flex justify-content-end  ">
+<div class="base-container">
+  <form [formGroup]="zoneForm" (ngSubmit)="submitForm()">
+    <div formArrayName="zones">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h3>Market Zones</h3>
+        <button
+          type="button"
+          class="btn btn-dark text-white fw-bold"
+          (click)="addZone()"
+          [disabled]="!isCurrentZoneValid"
+        >
+          Add Zone
+        </button>
+      </div>
+      <mat-tab-group [(selectedIndex)]="selectedTabIndex" >
+        <mat-tab *ngFor="let zone of zones.controls; let i = index" >
+   
+          <ng-template mat-tab-label style="background-color: gray;" >
+            Zone {{ i + 1 }}
             <button 
-              class="btn btn-dark btn-block text-white fw-bold" 
-              type="button" 
-              (click)="addZone()">
-              Add Zone
+              mat-icon-button
+              color="warn"
+              *ngIf="zones.length > 1"
+              (click)="removeZone(i)"
+              style="margin-left: 8px;"
+              aria-label="Remove zone"
+            >
+              <mat-icon>close</mat-icon>
             </button>
+          </ng-template>
+          <div class="p-2" [formGroupName]="i">
+            <mat-form-field appearance="outline" style="width: 100%;">
+              <mat-label>Jina Ya Zoni</mat-label>
+              <input matInput formControlName="zoneName" placeholder="Jina Ya Zoni..." />
+            </mat-form-field>
+  
+            <p><strong>Bidhaa zinazouzwa:</strong></p>
+            <div formGroupName="productList" class="row">
+              <div class="col-md-3" *ngFor="let product of productKeys">
+                <mat-checkbox [formControlName]="product">
+                  {{ productLabels[product] }}
+                </mat-checkbox>
+              </div>
+            </div>
+  
+            <div class="row mt-3 " >
+              <mat-form-field appearance="outline" class="col-md-3">
+                <mat-label>Leader Name</mat-label>
+                <input matInput formControlName="leaderName" placeholder=" " />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-md-3">
+                <mat-label>Leader Phone</mat-label>
+                <input matInput formControlName="leaderPhone" placeholder=" " />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-md-3">
+                <mat-label>Leader Phone Alt</mat-label>
+                <input matInput formControlName="leaderPhoneAlt" placeholder=" " />
+              </mat-form-field>
+            </div>
           </div>
-        </div>
-      </div>
-      
-      
-
-      <p class="mt-3"><strong>Bidhaa zinazouzwa:</strong></p>
-      <div class="row" formGroupName="productList">
-        <div class="col-md-3" *ngFor="let product of productKeys">
-          <mat-checkbox [formControlName]="product">{{ productLabels[product] }}</mat-checkbox>
-        </div>
-      </div>
-
-      <div class="row details">
-        <mat-form-field appearance="outline" class="col-md-3">
-          <mat-label>Leader Name</mat-label>
-          <input matInput formControlName="leaderName" placeholder=" ">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="col-md-3">
-          <mat-label>Leader Phone</mat-label>
-          <input matInput formControlName="leaderPhone" placeholder=" ">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="col-md-3">
-          <mat-label>Leader Phone Alt</mat-label>
-          <input matInput formControlName="leaderPhoneAlt" placeholder=" ">
-        </mat-form-field>
-      </div>
-
-      <button mat-button color="warn" (click)="removeZone(i)" *ngIf="zones.length > 1">Remove Zone</button>
+        </mat-tab>
+      </mat-tab-group>
+  
     </div>
-  </div>
-
-
-  <button mat-raised-button color="accent" type="submit">Submit</button>
-</form>
+  
+   
+  </form>
+  
+</div>

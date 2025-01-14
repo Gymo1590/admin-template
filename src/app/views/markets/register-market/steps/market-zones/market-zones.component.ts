@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormBuilder, FormArray, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormArray, FormGroup, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-market-zones',
@@ -17,7 +18,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule
   ],
   templateUrl: './market-zones.component.html',
   styleUrls: ['./market-zones.component.scss']
@@ -27,17 +29,17 @@ export class MarketZonesComponent implements OnInit {
   @Output() formSubmit = new EventEmitter<any>();
 
   zoneForm!: FormGroup;
+  selectedTabIndex = 0;
 
-  // Define product keys and labels
   productKeys = [
-    'matunda', 'mboga', 'nafaka', 'viungo', 'samakiWaKukaushwa',
-    'biasharaMchanganyiko', 'pembejeoZaKilimo', 'vifaaVyaUmeme', 'kuku',
-    'vifaaVyaUjenzi', 'dagaa', 'samakiWabichi', 'nyamaNgombe',
-    'nyamaMbuzi', 'chakula', 'utumbo', 'nauzaMaji', 'mafutaYaKula',
-    'mihogo', 'matundaYaliyokaushwa', 'ndizi', 'nazi', 'maziwa',
-    'viazi', 'vifungashioNaBidhaaNyingine', 'kuuzaChakula',
-    'zinginezo', 'magimbi', 'taxiDriver', 'wauzaNguo',
-    'vingamuziVyaMagari', 'ofisi'
+    'matunda','mboga','nafaka','viungo','samakiWaKukaushwa',
+    'biasharaMchanganyiko','pembejeoZaKilimo','vifaaVyaUmeme','kuku',
+    'vifaaVyaUjenzi','dagaa','samakiWabichi','nyamaNgombe',
+    'nyamaMbuzi','chakula','utumbo','nauzaMaji','mafutaYaKula',
+    'mihogo','matundaYaliyokaushwa','ndizi','nazi','maziwa',
+    'viazi','vifungashioNaBidhaaNyingine','kuuzaChakula',
+    'zinginezo','magimbi','taxiDriver','wauzaNguo',
+    'vingamuziVyaMagari','ofisi'
   ];
 
   productLabels: { [key: string]: string } = {
@@ -65,7 +67,7 @@ export class MarketZonesComponent implements OnInit {
     nazi: 'Nazi',
     maziwa: 'Maziwa',
     viazi: 'Viazi',
-    vifungashioNaBidhaaNyingine: 'Vigungashio na Bidhaa Nyingine',
+    vifungashioNaBidhaaNyingine: 'Vifungashio na Bidhaa Nyingine',
     kuuzaChakula: 'Kuuza Chakula',
     zinginezo: 'Zinginezo',
     magimbi: 'Magimbi',
@@ -83,40 +85,63 @@ export class MarketZonesComponent implements OnInit {
       this.zoneForm.disable();
     }
   }
+ 
+  private atLeastOneCheckboxValidator(control: AbstractControl) {
+    const productValues = Object.values(control.value) as boolean[];
+    return productValues.some((val: boolean) => val)
+      ? null
+      : { requireOneCheckbox: true };
+  }
 
   initializeForm() {
     this.zoneForm = this.fb.group({
-      zones: this.fb.array([this.createZone()]),  
+      zones: this.fb.array([this.createZone()]) // Start with one zone
     });
   }
-
+ 
   get zones(): FormArray {
     return this.zoneForm.get('zones') as FormArray;
   }
 
   createZone(): FormGroup {
+    const productGroup = this.fb.group(
+      this.productKeys.reduce((acc, key) => {
+        acc[key] = [false];
+        return acc;
+      }, {} as { [key: string]: any }),
+      { validators: this.atLeastOneCheckboxValidator }
+    );
+
     return this.fb.group({
       zoneName: ['', Validators.required],
-      productList: this.fb.group(
-        this.productKeys.reduce((acc, key) => {
-          acc[key] = [false];
-          return acc;
-        }, {} as { [key: string]: any })
-      ),
+      productList: productGroup,
       leaderName: ['', Validators.required],
       leaderPhone: ['', Validators.required],
-      leaderPhoneAlt: [''],
+      leaderPhoneAlt: ['']
     });
   }
 
   addZone() {
-    this.zones.push(this.createZone());
+    const currentZoneValid = this.zones.at(this.selectedTabIndex).valid;
+    if (currentZoneValid) {
+      this.zones.push(this.createZone());
+  
+      this.selectedTabIndex = this.zones.length - 1;
+    }
   }
 
   removeZone(index: number) {
     if (this.zones.length > 1) {
       this.zones.removeAt(index);
+ 
+      if (this.selectedTabIndex >= this.zones.length) {
+        this.selectedTabIndex = this.zones.length - 1;
+      }
     }
+  }
+ 
+  get isCurrentZoneValid(): boolean {
+    return !!this.zones.at(this.selectedTabIndex)?.valid;
   }
 
   submitForm() {
@@ -124,7 +149,7 @@ export class MarketZonesComponent implements OnInit {
       const payload = this.transformPayload();
       this.formSubmit.emit(payload);
     } else {
-      alert('Please fill all required fields.');
+      alert('Please fill all required fields and select at least one checkbox.');
     }
   }
 

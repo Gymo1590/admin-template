@@ -1,16 +1,16 @@
 .container {
     max-width: 100%;
-    overflow-x: hidden;  // Prevent horizontal scrolling
+    overflow-x: hidden;   
   }
   
   mat-tab-group {
-    width: 100%;  // Ensure tabs stretch properly
+    width: 100%;  
   }
   
   form {
     width: 100%;
     margin: 0;
-    overflow: hidden;  // Prevent vertical scroll
+    overflow: hidden;   
   }
   
   .row {
@@ -27,6 +27,6 @@
   }
   
   mat-tab-body {
-    overflow: visible;  // Prevent tab content from causing scroll
+    overflow: visible;  
   }
   
