@@ -1,0 +1,26 @@
+<form [formGroup]="introForm"  >
+       <!-- Greeting Section -->
+   <div style="margin-bottom: 2.5rem; background-color: azure; padding: 20px;">
+    <h4>Habari za [Asubuhi/Mchana/Jioni],</h4>
+    <p>
+      Jina langu ni <strong>{{name}}</strong> kutoka KUZA. Tunaendesha mchakato wa kuingiza wafanyabiashara sokoni kwa ajili ya mpango wetu, 
+      <strong>KUZA SOKONI</strong>, ambao unalenga kuinua wafanyabiashara sokoni kupitia huduma mbalimbali za kifedha na zisizo za kifedha.
+    </p>
+    <p>
+      Mchakato huu wa kuingiza unalenga kukusanya taarifa za kina kuhusu shughuli zako sokoni, ikiwemo uongozi, 
+      sifa za wafanyabiashara, aina za bidhaa zinazouzwa, na taarifa za kifedha. Ushiriki wako utakuwa muhimu sana 
+      ili kuhakikisha kuwa <strong>KUZA SOKONI</strong> inaweza kutoa msaada na rasilimali zinazohitajika ili kukidhi mahitaji na matarajio ya soko lako.
+    </p>
+    <p>
+      Mchakato huu unapaswa kuchukua takriban dakika 20 kukamilika. Hakuna majibu sahihi au yasiyo sahihi, 
+      na majibu yako yatashughulikiwa kwa usiri mkubwa.
+    </p>
+    <p>Naweza kuendelea?</p>
+    <div style="display: flex; justify-content: center; margin-top: 10px;">
+      <mat-radio-group formControlName="confirmation" style="display: flex; flex-direction: row; gap: 20px;">
+        <mat-radio-button value="Hapana">Hapana</mat-radio-button>
+        <mat-radio-button value="Ndio">Ndio</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+</form>

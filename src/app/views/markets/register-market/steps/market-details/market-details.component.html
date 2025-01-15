@@ -1,153 +1,315 @@
-<form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
-
-  <!-- Greeting Section -->
-  <div style="margin-bottom: 2.5rem; background-color: azure; padding: 20px;">
-    <h4>Habari za [Asubuhi/Mchana/Jioni],</h4>
-    <p>
-      Jina langu ni <strong>{{name}}</strong> kutoka KUZA. Tunaendesha mchakato wa kuingiza wafanyabiashara sokoni kwa ajili ya mpango wetu, 
-      <strong>KUZA SOKONI</strong>, ambao unalenga kuinua wafanyabiashara sokoni kupitia huduma mbalimbali za kifedha na zisizo za kifedha.
-    </p>
-    <p>
-      Mchakato huu wa kuingiza unalenga kukusanya taarifa za kina kuhusu shughuli zako sokoni, ikiwemo uongozi, 
-      sifa za wafanyabiashara, aina za bidhaa zinazouzwa, na taarifa za kifedha. Ushiriki wako utakuwa muhimu sana 
-      ili kuhakikisha kuwa <strong>KUZA SOKONI</strong> inaweza kutoa msaada na rasilimali zinazohitajika ili kukidhi mahitaji na matarajio ya soko lako.
-    </p>
-    <p>
-      Mchakato huu unapaswa kuchukua takriban dakika 20 kukamilika. Hakuna majibu sahihi au yasiyo sahihi, 
-      na majibu yako yatashughulikiwa kwa usiri mkubwa.
-    </p>
-    <p>Naweza kuendelea?</p>
-    <div style="display: flex; justify-content: center; margin-top: 10px;">
-      <mat-radio-group formControlName="confirmation" style="display: flex; flex-direction: row; gap: 20px;">
-        <mat-radio-button value="Hapana">Hapana</mat-radio-button>
-        <mat-radio-button value="Ndio">Ndio</mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
-
-  <!-- Form Fields Section -->
-  <div class="container">
+<div class="container-fluid mt-4">
+  <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
 
     <!-- Row 1: Three Fields -->
-    <div class="row mt-4" style="margin-bottom: 15px;">
-      <div class="col-md-4 col-sm-6 col-12">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Market Image</mat-label>
-          <input matInput formControlName="marketImage" placeholder="Enter market image">
+    <div class="row g-3" style="margin-bottom: 15px;">
+  
+      <div class="col-12">
+        <span>Picha ya Soko</span>
+        <mat-form-field appearance="outline" class="w-100"> 
+          <input 
+            type="file" 
+            (change)="handleFileSelection($event)" 
+            accept="image/*" 
+            capture="camera" 
+          >
+          <input matInput formControlName="marketImage" placeholder="Picha ya Soko" readonly>
           <mat-error *ngIf="detailsForm.get('marketImage')?.hasError('required')">
-            Market Image is required
+            Tafadhali chagua au piga picha ya soko
           </mat-error>
         </mat-form-field>
       </div>
-
-      <div class="col-md-4 col-sm-6 col-12">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Name</mat-label>
-          <input matInput formControlName="name" placeholder="Enter name">
+      
+      <div class="col-6 col-md-3">
+        <span>Jina La Soko</span>
+        <mat-form-field appearance="outline" class="w-100">
+           <input matInput formControlName="name" placeholder="Ingiza jina">
           <mat-error *ngIf="detailsForm.get('name')?.hasError('required')">
-            Name is required
+            Jina la soko linahitajika
           </mat-error>
         </mat-form-field>
       </div>
 
-      <div class="col-md-4 col-sm-6 col-12">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Latitude</mat-label>
-          <input matInput type="number" formControlName="latitude" placeholder="Enter latitude">
-          <mat-error *ngIf="detailsForm.get('latitude')?.hasError('required')">
-            Latitude is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-
-    <!-- Row 2: Three Fields -->
-    <div class="row mt-4" style="margin-bottom: 15px;">
-      <div class="col-md-4 col-sm-6 col-12">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Longitude</mat-label>
-          <input matInput type="number" formControlName="longitude" placeholder="Enter longitude">
-          <mat-error *ngIf="detailsForm.get('longitude')?.hasError('required')">
-            Longitude is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-4 col-sm-6 col-12">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Zone Count</mat-label>
-          <input matInput type="number" formControlName="zoneCount" placeholder="Enter zone count">
-          <mat-error *ngIf="detailsForm.get('zoneCount')?.hasError('required')">
-            Zone Count is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-4 col-sm-6 col-12">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Stall Count</mat-label>
-          <input matInput type="number" formControlName="stallCount" placeholder="Enter stall count">
-          <mat-error *ngIf="detailsForm.get('stallCount')?.hasError('required')">
-            Stall Count is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-
-    
-    <!-- Row 3: Three Fields -->
-    <div class="row mt-4" style="margin-bottom: 15px;">
-      <div class="col-md-2 col-sm-6 col-12">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Vendor Count</mat-label>
-          <input matInput type="number" formControlName="vendorCount" placeholder="Enter vendor count">
-          <mat-error *ngIf="detailsForm.get('vendorCount')?.hasError('required')">
-            Vendor Count is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-2 col-sm-6 col-12">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Female Count</mat-label>
-          <input matInput type="number" formControlName="femaleCount" placeholder="Enter female count">
-          <mat-error *ngIf="detailsForm.get('femaleCount')?.hasError('required')">
-            Female Count is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-2 col-sm-6 col-12">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Male Count</mat-label>
-          <input matInput type="number" formControlName="maleCount" placeholder="Enter male count">
-          <mat-error *ngIf="detailsForm.get('maleCount')?.hasError('required')">
-            Male Count is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-    </div>
- 
-    <div class="row mt-4" style="margin-bottom: 15px;">
-      <div class="col-md-2 col-sm-6 col-12">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="address" placeholder="Enter address">
+      <div class="col-6 col-md-3">
+        <span>Anwani ya Soko</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput formControlName="address" placeholder="Ingiza anwani">
           <mat-error *ngIf="detailsForm.get('address')?.hasError('required')">
-            Address is required
+            Anwani inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <span>Latitudo</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="latitude" placeholder="Ingiza latitudo">
+          <mat-error *ngIf="detailsForm.get('latitude')?.hasError('required')">
+            Latitudo inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <span>Longitudo</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="longitude" placeholder="Ingiza longitudo">
+          <mat-error *ngIf="detailsForm.get('longitude')?.hasError('required')">
+            Longitudo inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <span>Idadi ya vizimba</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="stallCount" placeholder="Ingiza idadi ya maduka">
+          <mat-error *ngIf="detailsForm.get('stallCount')?.hasError('required')">
+            Idadi ya vizimba na maduka inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <span>Idadi Ya Wauzaji</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="vendorCount" placeholder="Ingiza idadi ya wauzaji">
+          <mat-error *ngIf="detailsForm.get('vendorCount')?.hasError('required')">
+            Idadi ya wauzaji inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <span>Idadi Ya Wanawake</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="femaleCount" placeholder="Ingiza idadi ya wanawake">
+          <mat-error *ngIf="detailsForm.get('femaleCount')?.hasError('required')">
+            Idadi ya wanawake inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <span>Idadi Ya Wanaume</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="maleCount" placeholder="Ingiza idadi ya wanaume">
+          <mat-error *ngIf="detailsForm.get('maleCount')?.hasError('required')">
+            Idadi ya wanaume inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <span>Idadi Ya Vijana Wadogo(18 -24)</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="youngCount" placeholder="Idadi ya Vijana Wadogo(18-24)">
+          <mat-error *ngIf="detailsForm.get('femaleCount')?.hasError('required')">
+            Idadi ya vijana wadogo(18-24)
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <span>Idadi Ya Vijana Wadogo(25 -34)</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="youthCount" placeholder="Idadi ya Vijana Wadogo(25-34)">
+          <mat-error *ngIf="detailsForm.get('maleCount')?.hasError('required')">
+            Idadi ya Vijana Wakubwa(25-34)
+          </mat-error>
+        </mat-form-field>
+      </div>
+     
+      <div class="col-6 col-md-3">
+        <span>Idadi Ya Vijana Wadogo(35 na zaidi)</span>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="adultCount" placeholder="Idadi ya Vijana Wadogo(35 na zaidi)">
+          <mat-error *ngIf="detailsForm.get('maleCount')?.hasError('required')">
+            Idadi ya Watu Wazima(35 na zaidi)
           </mat-error>
         </mat-form-field>
       </div>
     </div>
 
-    <!-- Submit Button Row -->
-    <div class="row mt-3">
-      <div class="col-12 text-center">
-        <button mat-raised-button color="primary" type="submit" [disabled]="detailsForm.invalid">
-          Submit
-        </button>
+    <!--  -->
+ <h4>Miundombinu Ya Soko</h4>
+    <div class="row">
+      <div class="col-md-3 space">
+        <mat-checkbox
+          [checked]="detailsForm.get('bankAgent')?.value"
+          (change)="onCheckboxChange($event, 'bankAgentCount')"
+        >
+          Wakala wa Benki
+        </mat-checkbox>
+
+        <mat-form-field *ngIf="detailsForm.get('bankAgentCount')" appearance="outline">
+          <mat-label>Idadi ya Mawakala wa Benki</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="bankAgentCount"
+            placeholder="Ingiza idadi"
+          />
+          <mat-error *ngIf="detailsForm.get('bankAgentCount')?.hasError('required')">
+            Idadi ya mawakala inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="col-md-3 space" >
+        <mat-checkbox
+          [checked]="detailsForm.get('mobileAgent')?.value"
+          (change)="onCheckboxChange($event, 'mobileAgentCount')"
+        >
+          Wakala wa Mitandao
+        </mat-checkbox>
+        <mat-form-field *ngIf="detailsForm.get('mobileAgentCount')" appearance="outline">
+          <mat-label>Idadi ya Mawakala wa Mitandao</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="mobileAgentCount"
+            placeholder="Ingiza idadi"
+          />
+          <mat-error *ngIf="detailsForm.get('mobileAgentCount')?.hasError('required')">
+            Idadi ya mawakala inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="col-md-3 space">
+        <mat-checkbox
+          [checked]="detailsForm.get('refrigerationRoom')?.value"
+          (change)="onCheckboxChange($event, 'refrigerationRoomCount')"
+        >
+          Vyumba Baridi
+        </mat-checkbox>
+        <mat-form-field *ngIf="detailsForm.get('refrigerationRoomCount')" appearance="outline">
+          <mat-label>Idadi ya Vyumba Baridi</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="refrigerationRoomCount"
+            placeholder="Ingiza idadi"
+          />
+          <mat-error *ngIf="detailsForm.get('refrigerationRoomCount')?.hasError('required')">
+            Idadi ya vyumba inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="col-md-3 space">
+        <mat-checkbox
+          [checked]="detailsForm.get('dayCare')?.value"
+          (change)="onCheckboxChange($event, 'dayCareCount')"
+        >
+          Day Care
+        </mat-checkbox>
+        <mat-form-field *ngIf="detailsForm.get('dayCareCount')" appearance="outline">
+          <mat-label>Idadi ya Day Care</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="dayCareCount"
+            placeholder="Ingiza idadi"
+          />
+          <mat-error *ngIf="detailsForm.get('dayCareCount')?.hasError('required')">
+            Idadi ya day care inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    
+    <h4 style="margin:20px 0 20px 0;">Huduma za kifedha zilizopo sokoni</h4>
+
+    <div class="row">
+      <div class="col-md-3 space">
+        <mat-checkbox
+          [checked]="detailsForm.get('loanService')?.value"
+          (change)="onCheckboxChange($event, 'loanServiceCount')"
+        >
+          Huduma Ya Mikopo
+        </mat-checkbox>
+
+        <mat-form-field *ngIf="detailsForm.get('loanServiceCount')" appearance="outline">
+          <mat-label>Idadi ya watoa mikopo</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="loanServiceCount"
+            placeholder="Ingiza idadi"
+          />
+          <mat-error *ngIf="detailsForm.get('loanServiceCount')?.hasError('required')">
+            Kadiria idadi ya watoa mikopo
+          </mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="col-md-3 space" >
+        <mat-checkbox
+          [checked]="detailsForm.get('insuranceService')?.value"
+          (change)="onCheckboxChange($event, 'insuranceServiceCount')"
+        >
+          Huduma Ya Bima
+        </mat-checkbox>
+        <mat-form-field *ngIf="detailsForm.get('insuranceServiceCount')" appearance="outline">
+          <mat-label>Idadi ya watoa Bima</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="insuranceServiceCount"
+            placeholder="Ingiza idadi"
+          />
+          <mat-error *ngIf="detailsForm.get('insuranceServiceCount')?.hasError('required')">
+            Idadi ya watoa Bima inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="col-md-3 space">
+        <mat-checkbox
+          [checked]="detailsForm.get('savingService')?.value"
+          (change)="onCheckboxChange($event, 'savingServiceCount')"
+        >
+          Huduma za Akiba
+        </mat-checkbox>
+        <mat-form-field *ngIf="detailsForm.get('savingServiceCount')" appearance="outline">
+          <mat-label>Idadi ya watoa huduma ya Akiba</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="savingServiceCount"
+            placeholder="Ingiza idadi"
+          />
+          <mat-error *ngIf="detailsForm.get('savingServiceCount')?.hasError('required')">
+            Idadi ya watoa huduma ya Akiba Inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="col-md-3 space">
+        <mat-checkbox
+          [checked]="detailsForm.get('paymentService')?.value"
+          (change)="onCheckboxChange($event, 'paymentServiceCount')"
+        >
+          Malipo
+        </mat-checkbox>
+        <mat-form-field *ngIf="detailsForm.get('paymentServiceCount')" appearance="outline">
+          <mat-label>Idadi ya Malipo ya lazima sokoni</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="paymentServiceCount"
+            placeholder="Ingiza idadi"
+          />
+          <mat-error *ngIf="detailsForm.get('paymentServiceCount')?.hasError('required')">
+            Idadi ya Malipo ya lazima sokoni inahitajika
+          </mat-error>
+        </mat-form-field>
       </div>
     </div>
 
-  </div>
-</form>
+
+  </form>
+</div>

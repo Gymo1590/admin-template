@@ -6,6 +6,7 @@
         <button
           type="button"
           class="btn btn-dark text-white fw-bold"
+          style="background-color: #212631;"
           (click)="addZone()"
           [disabled]="!isCurrentZoneValid"
         >
@@ -35,17 +36,24 @@
             </mat-form-field>
   
             <p><strong>Bidhaa zinazouzwa:</strong></p>
-            <div formGroupName="productList" class="row">
-              <div class="col-md-3" *ngFor="let product of productKeys">
-                <mat-checkbox [formControlName]="product">
-                  {{ productLabels[product] }}
-                </mat-checkbox>
-              </div>
+            <div formGroupName="productList">
+              <table class="table table-striped challenge-table">
+                <tbody>
+                  <tr *ngFor="let row of splitArray(productKeys, 3); let rowIndex = index">
+                    <td *ngFor="let product of row">
+                      <mat-checkbox [formControlName]="product">
+                        {{ productLabels[product] }}
+                      </mat-checkbox>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+            
   
             <div class="row mt-3 " >
               <mat-form-field appearance="outline" class="col-md-3">
-                <mat-label>Leader Name</mat-label>
+                <mat-label></mat-label>
                 <input matInput formControlName="leaderName" placeholder=" " />
               </mat-form-field>
               <mat-form-field appearance="outline" class="col-md-3">

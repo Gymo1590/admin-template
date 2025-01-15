@@ -1,14 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaterialTimepickerComponent, NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 @Component({
   selector: 'app-market-time-slots',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,NgxMaterialTimepickerModule,MatFormFieldModule,MatIconModule,MatButtonModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    NgxMaterialTimepickerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule
+  ],
   templateUrl: './market-time-slots.component.html',
   styleUrls: ['./market-time-slots.component.scss']
 })
@@ -33,22 +43,15 @@ export class MarketTimeSlotsComponent implements OnInit {
   }
 
   initializeForm() {
-    this.timeSlotsForm = this.fb.group({
-      mondayOpen: [''],
-      mondayClose: [''],
-      tuesdayOpen: [''],
-      tuesdayClose: [''],
-      wednesdayOpen: [''],
-      wednesdayClose: [''],
-      thursdayOpen: [''],
-      thursdayClose: [''],
-      fridayOpen: [''],
-      fridayClose: [''],
-      saturdayOpen: [''],
-      saturdayClose: [''],
-      sundayOpen: [''],
-      sundayClose: ['']
+    const controls: { [key: string]: any } = {};
+    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    
+    days.forEach(day => {
+      controls[`${day}Open`] = [''];
+      controls[`${day}Close`] = [''];
     });
+
+    this.timeSlotsForm = this.fb.group(controls);
   }
 
   openPicker(day: string, type: 'open' | 'close') {
@@ -68,18 +71,16 @@ export class MarketTimeSlotsComponent implements OnInit {
     if (this.timeSlotsForm.valid) {
       const payload = this.transformToPayload();
       this.formSubmit.emit(payload);
-    } else {
-      alert('Please fill all required fields.');
     }
   }
 
   transformToPayload() {
     const formValues = this.timeSlotsForm.value;
     const timeSlots: { slotName: string; openTime: string; closeTime: string }[] = [];
-  
+    
     const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-  
-    for (let day of days) {
+    
+    for (const day of days) {
       if (formValues[`${day}Open`] && formValues[`${day}Close`]) {
         timeSlots.push({
           slotName: day.charAt(0).toUpperCase() + day.slice(1),
@@ -90,7 +91,4 @@ export class MarketTimeSlotsComponent implements OnInit {
     }
     return { timeSlots };
   }
-  
-
-    
 }

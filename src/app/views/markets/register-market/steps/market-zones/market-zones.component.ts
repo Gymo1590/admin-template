@@ -95,7 +95,7 @@ export class MarketZonesComponent implements OnInit {
 
   initializeForm() {
     this.zoneForm = this.fb.group({
-      zones: this.fb.array([this.createZone()]) // Start with one zone
+      zones: this.fb.array([this.createZone()]) 
     });
   }
  
@@ -120,7 +120,14 @@ export class MarketZonesComponent implements OnInit {
       leaderPhoneAlt: ['']
     });
   }
-
+  splitArray(array: string[], chunkSize: number): string[][] {
+    const result: string[][] = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+      result.push(array.slice(i, i + chunkSize));
+    }
+    return result;
+  }
+  
   addZone() {
     const currentZoneValid = this.zones.at(this.selectedTabIndex).valid;
     if (currentZoneValid) {

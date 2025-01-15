@@ -1,0 +1,27 @@
+.file-input-wrapper input[type="file"] {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #000;
+  }
+  
+  .file-input-wrapper input[type="file"]:focus {
+    outline: none;
+    border-color: #3f51b5;
+  }
+  .space {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  
+  }
+  
+  @media (max-width: 768px) {
+    .space {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  

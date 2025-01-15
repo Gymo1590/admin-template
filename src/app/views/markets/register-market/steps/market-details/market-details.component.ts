@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -23,6 +23,7 @@ import { MatRadioModule } from '@angular/material/radio';
   styleUrl: './market-details.component.scss'
 })
 export class MarketDetailsComponent implements OnInit{
+  [x: string]: any;
   @Input() mode: 'create' | 'edit' | 'view' = 'create';  
   @Output() formSubmit = new EventEmitter<any>();
 
@@ -50,15 +51,60 @@ export class MarketDetailsComponent implements OnInit{
       adultCount: ['', Validators.required],
       loans: ['', Validators.required],
       trainingReceived: [false, Validators.required],
-      trainingYearlyCount: ['', Validators.required],
-      trainingEntity: ['', Validators.required],
-      trainingObjective: ['', Validators.required],
-      infrastructureCount: ['', Validators.required],
-      confirmation: ['', Validators.required]  // new radio selection field
     });
+  }
+
+
+  onCheckboxChange(event: MatCheckboxChange, controlName: string): void {
+    if (event.checked) {
+      this.detailsForm.addControl(
+        controlName,
+        this.formBuilder.control(null, [Validators.required, Validators.min(1)])
+      );
+    } else {
+      this.detailsForm.removeControl(controlName);
+    }
   }
   
 
+  handleFileError(event: any) {
+    const file = event.target.files[0];
+    if (!file) {
+      console.error('No file selected');
+      return;
+    }
+    if (file.size > 5000000) { 
+      console.error('File size exceeds limit');
+      return;
+    }
+    const allowedTypes = ['image/jpeg', 'image/png'];
+    if (!allowedTypes.includes(file.type)) {
+      console.error('Invalid file type');
+      return;
+    }
+  }
+
+  handleFileSelection(event: any) {
+    const file = event.target.files[0];
+    if (!file) {
+      console.error('No file selected');
+      return;
+    }
+
+    if (file.size > 5000000) {
+      console.error('File size exceeds limit');
+      return;
+    }
+
+    const allowedTypes = ['image/jpeg', 'image/png'];
+    if (!allowedTypes.includes(file.type)) {
+      console.error('Invalid file type');
+      return;
+    }
+
+    this.detailsForm.get('marketImage')?.setValue(file.name);
+    console.log('File selected:', file.name);
+  }
   onSubmit() {
     if (this.detailsForm.valid) {
       this.formSubmit.emit(this.detailsForm.value);

@@ -1,0 +1,96 @@
+<div class="container-fluid mt-4">
+    <mat-tab-group [(selectedIndex)]="activeTabIndex">
+  
+      
+        <!-- Vendor Challenges Tab -->
+        <mat-tab label="Vendor Challenges">
+          <div class="challenge-container">
+            <table class="table table-striped challenge-table">
+              <tbody>
+                <tr>
+                  <td><mat-checkbox>Mikopo na fedha</mat-checkbox></td>
+                  <td><mat-checkbox>Usimamizi wa bidhaa sokoni</mat-checkbox></td>
+                  <td><mat-checkbox>Changamoto ya upatikanaji wa bidhaa</mat-checkbox></td>
+                </tr>
+                <tr>
+                  <td><mat-checkbox>Mtaji mdogo</mat-checkbox></td>
+                  <td><mat-checkbox>Ukosefu wa umeme</mat-checkbox></td>
+                  <td><mat-checkbox>Mfumuko wa bei za bidhaa</mat-checkbox></td>
+                </tr>
+                <tr>
+                  <td><mat-checkbox>Miundombinu mibovu</mat-checkbox></td>
+                  <td><mat-checkbox>Ushindani sokoni</mat-checkbox></td>
+                  <td><mat-checkbox>Mahitaji ya wateja</mat-checkbox></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-tab>
+              <!-- Leadership Challenges Tab -->
+              <mat-tab label="Leadership Challenges">
+                <div class="challenge-container">
+          
+                  <table class="table table-striped challenge-table">
+                    <tbody>
+                      <tr>
+                        <td><mat-checkbox>Kutunza taarifa</mat-checkbox></td>
+                      </tr>
+                      <tr>
+                        <td><mat-checkbox>Kuvutia wateja wapya</mat-checkbox></td>
+                      </tr>
+                      <tr>
+                          <td><mat-checkbox>Usimamizi wa fedha</mat-checkbox></td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </mat-tab>
+      </mat-tab-group>
+      
+      
+
+      <div style="margin-top: 1rem; margin-bottom: 20px; width: 100%; display: flex; justify-content:stretch;">
+        <div style="width: 90%;">
+          <h4>Educational  Information</h4>
+          <form [formGroup]="trainingGroup" (ngSubmit)="onSubmit()" style="width: 100%;">
+            <span>Je Kuna mafunzo yoyote mnayopokea kwa sasa?</span>
+            <div class="row g-1" style="display: flex; flex-wrap: wrap; justify-content: start;">
+              <!-- Current Training as Radio Button -->
+              <div style="flex: 1 1 calc(90% - 0.1rem);">
+                <mat-radio-group formControlName="current" (change)="onCurrentTrainingChange()">
+                  <mat-radio-button value="true">Yes</mat-radio-button>
+                  <mat-radio-button value="false">No</mat-radio-button>
+                </mat-radio-group>
+              </div>
+      
+              <!-- Conditional Fields -->
+              <div *ngIf="isCurrentTraining" style="flex: 1 1 calc(48% - 1rem);">
+                <span>Je, mafunzo haya yanafanyika mara ngapi kwa mwaka?</span>
+                <mat-form-field appearance="outline" class="w-100">
+                   <input matInput id="frequency" type="text" formControlName="frequency" />
+                </mat-form-field>
+              </div>
+      
+              <div *ngIf="isCurrentTraining" style="flex: 1 1 calc(48% - 1rem);">
+                <span>Je, ni taasisi gani inayotoa haya mafunzo?</span>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput id="institution" type="text" formControlName="institution" />
+                </mat-form-field>
+              </div>
+    
+              <div *ngIf="isCurrentTraining" style="flex: 1 1 calc(96% - 0.1rem);">
+                <span>Lengo la Mafunzo</span>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput id="objective" type="text" formControlName="objective" />
+                </mat-form-field>
+              </div>
+            </div>
+
+           </form>
+        </div>
+      </div>
+        
+
+</div>
+  

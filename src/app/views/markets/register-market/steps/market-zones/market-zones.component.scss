@@ -29,3 +29,26 @@ form {
 mat-tab-body {
   overflow: visible;  
 }
+.challenge-table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.challenge-table td {
+  padding: 8px 12px;
+  vertical-align: middle;
+}
+
+mat-checkbox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .challenge-table td {
+    padding: 6px;
+  }
+}
+

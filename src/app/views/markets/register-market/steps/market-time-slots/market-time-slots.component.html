@@ -1,71 +1,80 @@
 <div class="container mt-4">
-    <h3 class="mb-4">Saa za Kufanya Kazi za Soko</h3>
-  
-    <form [formGroup]="timeSlotsForm" (ngSubmit)="submitForm()">
-  
-      <!-- Monday -->
+  <h3 class="mb-4">Saa za Kufanya Kazi za Soko</h3>
+
+  <form [formGroup]="timeSlotsForm" (ngSubmit)="submitForm()">
+    <!-- Monday -->
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <strong>Monday</strong>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Time In</mat-label>
+          <input
+            matInput
+            [readonly]="true"
+            formControlName="mondayOpen"
+            (click)="openPicker('monday', 'open')"
+            placeholder="Select time"
+          >
+          <mat-icon matSuffix>schedule</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Time Out</mat-label>
+          <input
+            matInput
+            [readonly]="true"
+            formControlName="mondayClose"
+            (click)="openPicker('monday', 'close')"
+            placeholder="Select time"
+          >
+          <mat-icon matSuffix>schedule</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Repeat for Other Days -->
+    <ng-container *ngFor="let day of ['tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']">
       <div class="row mb-3">
         <div class="col-md-4">
-          <strong>Monday</strong>
+          <strong>{{ day.charAt(0).toUpperCase() + day.slice(1) }}</strong>
         </div>
-        <div class="col-md-4 d-flex align-items-center">
-          <input
-            type="text"
-            class="form-control"
-            formControlName="mondayOpen"
-            readonly
-            (click)="openPicker('monday', 'open')"
-          />
-         
+        <div class="col-md-4">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Time In</mat-label>
+            <input
+              matInput
+              [readonly]="true"
+              [formControlName]="day + 'Open'"
+              (click)="openPicker(day, 'open')"
+              placeholder="Select time"
+            >
+            <mat-icon matSuffix>schedule</mat-icon>
+          </mat-form-field>
         </div>
-        <div class="col-md-4 d-flex align-items-center">
-          <input
-            type="text"
-            class="form-control"
-            formControlName="mondayClose"
-            readonly
-            (click)="openPicker('monday', 'close')"
-          />
-          
+        <div class="col-md-4">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Time Out</mat-label>
+            <input
+              matInput
+              [readonly]="true"
+              [formControlName]="day + 'Close'"
+              (click)="openPicker(day, 'close')"
+              placeholder="Select time"
+            >
+            <mat-icon matSuffix>schedule</mat-icon>
+          </mat-form-field>
         </div>
       </div>
-  
-      <!-- Repeat for Other Days -->
-      <ng-container *ngFor="let day of ['tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']">
-        <div class="row mb-3">
-          <div class="col-md-4">
-            <strong>{{ day.charAt(0).toUpperCase() + day.slice(1) }}</strong>
-          </div>
-          <div class="col-md-4 d-flex align-items-center">
-            <input
-              type="text"
-              class="form-control"
-              [formControlName]="day + 'Open'"
-              readonly
-              (click)="openPicker(day, 'open')"
-            />
-            
-          </div>
-          <div class="col-md-4 d-flex align-items-center">
-            <input
-              type="text"
-              class="form-control"
-              [formControlName]="day + 'Close'"
-              readonly
-              (click)="openPicker(day, 'close')"
-            />
-          
-          </div>
-        </div>
-      </ng-container>
-  
-      <ngx-material-timepicker
-        #timepicker
-        [format]="12"
-        (timeSet)="setTime($event)"
-      ></ngx-material-timepicker>
-  
-      
-    </form>
-  </div>
-  
+    </ng-container>
+
+    <ngx-material-timepicker
+      #timepicker
+      [format]="12"
+      (timeSet)="setTime($event)"
+    ></ngx-material-timepicker>
+
+  </form>
+</div>
