@@ -1,60 +1,101 @@
 <div class="stepper">
   <div class="step" [class.active]="currentStep === 1">
     <div class="circle">1</div>
-    <div class="label">Market Details</div>
+    <div class="label">Introduction</div>
   </div>
   <div class="divider"></div>
+
   <div class="step" [class.active]="currentStep === 2">
     <div class="circle">2</div>
-    <div class="label">Zones</div>
+    <div class="label">Details</div>
   </div>
+
   <div class="divider"></div>
   <div class="step" [class.active]="currentStep === 3">
     <div class="circle">3</div>
-    <div class="label">TimeSlots</div>
+    <div class="label">Challenges</div>
   </div>
+
   <div class="divider"></div>
   <div class="step" [class.active]="currentStep === 4">
     <div class="circle">4</div>
+    <div class="label">Zones</div>
+  </div>
+  <div class="divider"></div>
+  <div class="step" [class.active]="currentStep === 5">
+    <div class="circle">5</div>
+    <div class="label">Time Slots</div>
+  </div>
+ 
+  <div class="divider"></div>
+  <div class="step" [class.active]="currentStep === 6">
+    <div class="circle">6</div>
     <div class="label">Leaders</div>
   </div>
 </div>
 
 <!-- Step Content -->
-<div class="step-content">
-  <app-market-details
-    *ngIf="currentStep === 1"
-    [mode]="mode"
-    (formSubmit)="updateFormData('marketDetails', $event)">
-  </app-market-details>
+  
 
-  <app-market-zones
-    *ngIf="currentStep === 2"
-    [mode]="mode"
-    (formSubmit)="updateFormData('zones', $event)">
-  </app-market-zones>
 
-  <app-market-time-slots
-    *ngIf="currentStep === 3"
-    [mode]="mode"
-    (formSubmit)="updateFormData('timeSlots', $event)">
-  </app-market-time-slots>
+    <div class="back">
+      <div class="step-content">
+        <app-market-intro
+        *ngIf="currentStep === 1"
+        [mode]="mode"
+        (formSubmit)="updateFormData('marketIntro', $event)">
+      </app-market-intro>
+    </div>
 
-  <app-market-leaders
-    *ngIf="currentStep === 4"
-    [mode]="mode"
-    (formSubmit)="updateFormData('leaders', $event)">
-  </app-market-leaders>
-</div>
+    <div class="back">
+      <app-market-details
+      *ngIf="currentStep === 2"
+      [mode]="mode"
+      (formSubmit)="updateFormData('marketDetails', $event)">
+      </app-market-details>
+    </div>
 
-<div class="actions">
+    <div class="back">
+      <div class="step-content">
+        <app-market-challenges
+        *ngIf="currentStep === 3"
+        [mode]="mode"
+        (formSubmit)="updateFormData('marketChallenges', $event)">
+      </app-market-challenges>
+    </div>
+
+    <div class="back">
+      <app-market-zones
+      *ngIf="currentStep === 4"
+      [mode]="mode"
+      (formSubmit)="updateFormData('zones', $event)">
+      </app-market-zones>
+    </div>
+
+    <div class="back">
+      <app-market-time-slots
+        *ngIf="currentStep === 5"
+        [mode]="mode"
+        (formSubmit)="updateFormData('timeSlots', $event)">
+      </app-market-time-slots>
+    </div>
+    
+    <div class="back">
+      <app-market-leaders
+        *ngIf="currentStep === 6"
+        [mode]="mode"
+        (formSubmit)="updateFormData('leaders', $event)">
+      </app-market-leaders>
+    </div>
+
+<div class="actions" >
   <button class="step-button back-button" (click)="prevStep()" [disabled]="currentStep === 1">
     &#x3C; Back
   </button>
-  <button class="step-button next-button" (click)="nextStep()" *ngIf="currentStep < 4">
+  <button class="step-button next-button" (click)="nextStep()" *ngIf="currentStep < 6">
     Next &#x3E;
   </button>
-  <button class="step-button submit-button" (click)="submitData()" *ngIf="currentStep === 4">
+  <button class="step-button submit-button" (click)="submitData()" *ngIf="currentStep === 6">
     <!-- Using material icon: send, as an example -->
     <mat-icon>send</mat-icon> Submit
   </button>

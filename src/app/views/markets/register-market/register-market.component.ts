@@ -6,9 +6,9 @@ import { MarketTimeSlotsComponent } from './steps/market-time-slots/market-time-
 import { MarketZonesComponent } from './steps/market-zones/market-zones.component';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
+import { MarketChallengesComponent } from './steps/market-challenges/market-challenges.component';
+import { MarketIntroComponent } from './steps/market-intro/market-intro.component';
  
- 
-
 @Component({
   selector: 'app-register-market',
   templateUrl: './register-market.component.html',
@@ -16,11 +16,13 @@ import { MatIcon } from '@angular/material/icon';
   imports:[
     MarketLeadersComponent,
     MarketDetailsComponent,
+    MarketChallengesComponent,
     MarketTimeSlotsComponent,
     MarketZonesComponent,
     CommonModule ,
     ReactiveFormsModule,
-    MatIcon
+    MatIcon,
+    MarketIntroComponent
   ]
 })
    
@@ -32,7 +34,7 @@ export class RegisterMarketComponent {
   constructor(private fb: FormBuilder) {}
 
   nextStep() {
-    if (this.currentStep < 4) this.currentStep++;
+    if (this.currentStep < 6) this.currentStep++;
   }
 
   prevStep() {

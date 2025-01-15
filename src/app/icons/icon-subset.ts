@@ -195,7 +195,7 @@ export const iconSubset = {
   cilUserFemale,
   cilUserFollow,
   cilUserUnfollow,
-  logo,
+ // logo,
   signet
 };
 
@@ -295,7 +295,7 @@ export enum IconSubset {
   cilUserFemale = 'cilUserFemale',
   cilUserFollow = 'cilUserFollow',
   cilUserUnfollow = 'cilUserUnfollow',
-  logo = 'logo',
+ // logo = 'logo',
   signet = 'signet'
 }
 
