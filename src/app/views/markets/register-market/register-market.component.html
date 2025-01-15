@@ -47,9 +47,15 @@
   </app-market-leaders>
 </div>
 
-<!-- Navigation Buttons -->
 <div class="actions">
-  <button (click)="prevStep()" [disabled]="currentStep === 1">Back</button>
-  <button (click)="nextStep()" *ngIf="currentStep < 4">Next</button>
-  <button (click)="submitData()" *ngIf="currentStep === 4">Submit</button>
+  <button class="step-button back-button" (click)="prevStep()" [disabled]="currentStep === 1">
+    &#x3C; Back
+  </button>
+  <button class="step-button next-button" (click)="nextStep()" *ngIf="currentStep < 4">
+    Next &#x3E;
+  </button>
+  <button class="step-button submit-button" (click)="submitData()" *ngIf="currentStep === 4">
+    <!-- Using material icon: send, as an example -->
+    <mat-icon>send</mat-icon> Submit
+  </button>
 </div>

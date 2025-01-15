@@ -3,8 +3,13 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-}
+  margin-top: 30px;
 
+}
+.step-content{
+  border-width: 2px;
+  border-color: #777;
+}
 .step {
   text-align: center;
   position: relative;
@@ -19,6 +24,7 @@
   border: 2px solid #ccc;
   color: #777;
   font-weight: bold;
+  background-color: #007bff;
 }
 
 .step.active .circle {
@@ -48,3 +54,37 @@
 .step.active + .divider {
   background-color: #007bff;
 }
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.step-button {
+  background-color: #007bff;  
+  color: #ffffff;        
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;  
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for better UX */
+.step-button:hover:not(:disabled) {
+  background-color: #0056b3; 
+}
+
+/* Disabled state styling */
+.step-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+ 

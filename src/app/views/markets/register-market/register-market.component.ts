@@ -5,6 +5,7 @@ import { MarketDetailsComponent } from './steps/market-details/market-details.co
 import { MarketTimeSlotsComponent } from './steps/market-time-slots/market-time-slots.component';
 import { MarketZonesComponent } from './steps/market-zones/market-zones.component';
 import { CommonModule } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
  
  
 
@@ -18,7 +19,8 @@ import { CommonModule } from '@angular/common';
     MarketTimeSlotsComponent,
     MarketZonesComponent,
     CommonModule ,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIcon
   ]
 })
    
