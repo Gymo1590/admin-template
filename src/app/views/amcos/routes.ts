@@ -1,32 +1,19 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  {
-    path: '',
-    data: {
-      title: 'Theme'
-    },
-    children: [
       {
         path: '',
-        redirectTo: 'colors',
-        pathMatch: 'full'
+        loadComponent: () => import('../amcos/amcos.component').then(m => m.AmcosComponent),
+        data: {
+          title: 'Amcos'
+        }
       },
-      // {
-      //   path: 'colors',
-      //   loadComponent: () => import('./colors.component').then(m => m.ColorsComponent),
-      //   data: {
-      //     title: 'Colors'
-      //   }
-      // },
-      // {
-      //   path: 'typography',
-      //   loadComponent: () => import('./typography.component').then(m => m.TypographyComponent),
-      //   data: {
-      //     title: 'Typography'
-      //   }
-      // }
-    ]
-  }
+      {
+        path: 'amcos/create',
+        loadComponent: () => import('./register-amcos/register-amcos.component').then(m => m.RegisterAmcosComponent),
+        data: {
+          title: 'Create New Amcos'
+        }
+      }
 ];
 

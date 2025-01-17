@@ -4,7 +4,7 @@
   <mat-tab-group [(selectedIndex)]="activeTabIndex">
     <mat-tab *ngFor="let title of titles; let i = index" [label]="title">
       <div class="tab-content mt-4">
-        <form [formGroup]="leaderForms[i]" (ngSubmit)="submitForm()">
+        <form [formGroup]="getLeaderForms[i]" >
           <div class="row g-3">
             <div class="col-md-6">
               <mat-form-field appearance="outline" class="w-100">
@@ -23,7 +23,7 @@
             <div class="col-md-6">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Gender</mat-label>
-                <mat-select formControlName="gender" [disabled]="mode === 'view'">
+                <mat-select formControlName="gender"  >
                   <mat-option value="">Select Gender</mat-option>
                   <mat-option value="Male">Male</mat-option>
                   <mat-option value="Female">Female</mat-option>
@@ -53,11 +53,30 @@
             </div>
 
             <div class="col-md-6">
-              <mat-checkbox formControlName="contactPerson" [disabled]="mode === 'view'">Contact Person</mat-checkbox>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>ID Type</mat-label>
+                <mat-select formControlName="idName"  >
+                  <mat-option value="">ID Type</mat-option>
+                  <mat-option value="Male">NIDA</mat-option>
+                  <mat-option value="Female">Leseni ya udereva</mat-option>
+                  <mat-option value="Male">Kitambulisho cha kura</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
 
             <div class="col-md-6">
-              <mat-checkbox formControlName="canLogin" [disabled]="mode === 'view'">Can Login</mat-checkbox>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Id Number</mat-label>
+                <input matInput  formControlName="idNumber" [readonly]="mode === 'view'">
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-checkbox formControlName="contactPerson"  >Contact Person</mat-checkbox>
+            </div>
+
+            <div class="col-md-6">
+              <mat-checkbox formControlName="canLogin"  >Can Login</mat-checkbox>
             </div>
           </div>
 

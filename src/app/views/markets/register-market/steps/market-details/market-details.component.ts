@@ -32,6 +32,9 @@ export class MarketDetailsComponent implements OnInit{
   name:string = 'Gift Peter';
   ngOnInit(): void {
       this.initialize();
+      this.detailsForm.valueChanges.subscribe(value => {
+        this.formSubmit.emit(value);
+      });
   }
 
   initialize(){
@@ -105,14 +108,14 @@ export class MarketDetailsComponent implements OnInit{
     this.detailsForm.get('marketImage')?.setValue(file.name);
     console.log('File selected:', file.name);
   }
-  onSubmit() {
-    if (this.detailsForm.valid) {
-      this.formSubmit.emit(this.detailsForm.value);
-      console.log('Form Submitted Successfully:', this.detailsForm.value);
-    } else {
-      console.log('Form is invalid');
-    }
+
+  get getMarketDetails(){
+    console.log("Challenges:",this.detailsForm.value);
+
+    return this.detailsForm.value;
   }
+
+
 }
  
 

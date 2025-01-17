@@ -55,11 +55,21 @@ export class MarketChallengesComponent implements OnInit{
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       leadershipChallenges: this.fb.group({
-        selected: [[]],
+        kutunzaTaarifa:[false],
+        kuvutaWateja:[false],
+        usimamiziFedha:[false],
         other: [''],
       }),
       vendorChallenges: this.fb.group({
-        selected: [[]],
+        mkopoFedha:[false],
+        bidhaaMsimamizi:[false],
+        bidhaaChangamoto:[false],
+        mtajiMdogo:[false],
+        ukosefuUmeme:[false],
+        beiMfumuko:[false],
+        miundombinuMibovu:[false],
+        ushindaniSokoni:[false],
+        mahitajiWateja:[false],
         other: [''],
       }),
       training: this.fb.group({
@@ -77,11 +87,16 @@ export class MarketChallengesComponent implements OnInit{
         this.clearTrainingFields(); 
       }
     });
+    this.form.valueChanges.subscribe(value => {
+      this.formSubmit.emit(value);
+    });
   }
 
   get trainingGroup(): FormGroup {
     return this.form.get('training') as FormGroup;
   }
+
+  
   onCurrentTrainingChange() {
     const currentTraining = this.trainingGroup.get('current')?.value;
     this.isCurrentTraining = currentTraining === 'true';
@@ -137,12 +152,9 @@ export class MarketChallengesComponent implements OnInit{
   isChallengeSelected(group: 'leadership' | 'vendor', index: number): boolean {
     return this.selectedChallenges[group].has(index);
   }
-  onSubmit() {
-    if (this.form.valid) {
-      this.formSubmit.emit(this.form.value);
-      console.log('Form submitted successfully:', this.form.value);
-    } else {
-      console.error('Form is invalid');
-    }
-  }
+
+ get getMarketChallenges(){
+  console.log("Challenges:",this.form.value);
+  return this.form.value
+ }
 }

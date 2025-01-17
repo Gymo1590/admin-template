@@ -40,6 +40,9 @@ export class MarketTimeSlotsComponent implements OnInit {
     if (this.mode === 'view') {
       this.timeSlotsForm.disable();
     }
+    this.timeSlotsForm.valueChanges.subscribe(value => {
+      this.formSubmit.emit(value);
+    });
   }
 
   initializeForm() {
@@ -67,14 +70,7 @@ export class MarketTimeSlotsComponent implements OnInit {
     }
   }
 
-  submitForm() {
-    if (this.timeSlotsForm.valid) {
-      const payload = this.transformToPayload();
-      this.formSubmit.emit(payload);
-    }
-  }
-
-  transformToPayload() {
+  get getMarketSlots() {
     const formValues = this.timeSlotsForm.value;
     const timeSlots: { slotName: string; openTime: string; closeTime: string }[] = [];
     
@@ -89,6 +85,8 @@ export class MarketTimeSlotsComponent implements OnInit {
         });
       }
     }
+    console.log("Challenges:",timeSlots);
+
     return { timeSlots };
   }
 }

@@ -84,6 +84,9 @@ export class MarketZonesComponent implements OnInit {
     if (this.mode === 'view') {
       this.zoneForm.disable();
     }
+    this.zoneForm.valueChanges.subscribe(value => {
+      this.formSubmit.emit(value);
+    });
   }
  
   private atLeastOneCheckboxValidator(control: AbstractControl) {
@@ -151,17 +154,15 @@ export class MarketZonesComponent implements OnInit {
     return !!this.zones.at(this.selectedTabIndex)?.valid;
   }
 
-  submitForm() {
-    if (this.zoneForm.valid) {
-      const payload = this.transformPayload();
-      this.formSubmit.emit(payload);
-    } else {
-      alert('Please fill all required fields and select at least one checkbox.');
-    }
-  }
 
-  transformPayload() {
+
+  get getMarketZones() {
     const formValues = this.zoneForm.value.zones;
+    console.log("Challenges:",{
+      zoneCount: formValues.length,
+      zones: formValues
+    });
+
     return {
       zoneCount: formValues.length,
       zones: formValues

@@ -37,8 +37,11 @@ export class MarketLeadersComponent implements OnInit {
   ngOnInit() {
     this.initializeForms();
     if (this.mode === 'view') {
-      this.leadersFormArray.disable();
+      //this.leadersFormArray.disable();
     }
+    this.leadersFormArray.valueChanges.subscribe(value => {
+      this.formSubmit.emit(value);
+    });
   }
 
   initializeForms() {
@@ -60,16 +63,30 @@ export class MarketLeadersComponent implements OnInit {
     });
   }
 
-  submitForm() {
-    if (this.leadersFormArray.valid) {
-      this.formSubmit.emit({ leaders: this.leadersFormArray.getRawValue() });
-    } else {
-      this.leadersFormArray.markAllAsTouched();
-      alert('Please fill all required fields.');
-    }
+
+
+  get getLeaderForms(): FormGroup[] {
+    return  this.leadersFormArray.controls as FormGroup[]
   }
 
-  get leaderForms(): FormGroup[] {
-    return this.leadersFormArray.controls as FormGroup[];
+  get getLeadersFormData(){
+    return {
+      leaders: this.leadersFormArray.controls.map(control => {
+          const value = control.value;
+          return {
+            firstName: value.firstName,
+            lastName: value.lastName,
+            gender: value.gender,
+            contactPhone: value.contactPhone,
+            email: value.email,
+            designation: value.designation,
+            idNumber: value.idNumber,
+            idName: value.idName,
+            dateOfBirth: value.dateOfBirth,
+            contactPerson: value.contactPerson,
+            canLogin: value.canLogin,
+          };
+      })
+  };
   }
 }

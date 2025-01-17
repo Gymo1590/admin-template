@@ -5,22 +5,22 @@
         <!-- Vendor Challenges Tab -->
         <mat-tab label="Vendor Challenges">
           <div class="challenge-container">
-            <table class="table table-striped challenge-table">
+            <table class="table table-striped challenge-table" [formGroup]="vendorGroup">
               <tbody>
                 <tr>
-                  <td><mat-checkbox>Mikopo na fedha</mat-checkbox></td>
-                  <td><mat-checkbox>Usimamizi wa bidhaa sokoni</mat-checkbox></td>
-                  <td><mat-checkbox>Changamoto ya upatikanaji wa bidhaa</mat-checkbox></td>
+                  <td><mat-checkbox formControlName="mkopoFedha">Mikopo na fedha</mat-checkbox></td>
+                  <td><mat-checkbox formControlName="bidhaaMsimamizi">Usimamizi wa bidhaa sokoni</mat-checkbox></td>
+                  <td><mat-checkbox formControlName="bidhaaChangamoto">Changamoto ya upatikanaji wa bidhaa</mat-checkbox></td>
                 </tr>
                 <tr>
-                  <td><mat-checkbox>Mtaji mdogo</mat-checkbox></td>
-                  <td><mat-checkbox>Ukosefu wa umeme</mat-checkbox></td>
-                  <td><mat-checkbox>Mfumuko wa bei za bidhaa</mat-checkbox></td>
+                  <td><mat-checkbox formControlName="mtajiMdogo">Mtaji mdogo</mat-checkbox></td>
+                  <td><mat-checkbox formControlName="ukosefuUmeme">Ukosefu wa umeme</mat-checkbox></td>
+                  <td><mat-checkbox formControlName="beiMfumuko">Mfumuko wa bei za bidhaa</mat-checkbox></td>
                 </tr>
                 <tr>
-                  <td><mat-checkbox>Miundombinu mibovu</mat-checkbox></td>
-                  <td><mat-checkbox>Ushindani sokoni</mat-checkbox></td>
-                  <td><mat-checkbox>Mahitaji ya wateja</mat-checkbox></td>
+                  <td><mat-checkbox formControlName="miundombinuMibovu">Miundombinu mibovu</mat-checkbox></td>
+                  <td><mat-checkbox formControlName="ushindaniSokoni">Ushindani sokoni</mat-checkbox></td>
+                  <td><mat-checkbox formControlName="mahitajiWateja">Mahitaji ya wateja</mat-checkbox></td>
                 </tr>
               </tbody>
             </table>
@@ -30,16 +30,16 @@
               <mat-tab label="Leadership Challenges">
                 <div class="challenge-container">
           
-                  <table class="table table-striped challenge-table">
+                  <table class="table table-striped challenge-table" [formGroup]="leadershipGroup">
                     <tbody>
                       <tr>
-                        <td><mat-checkbox>Kutunza taarifa</mat-checkbox></td>
+                        <td><mat-checkbox formControlName="kutunzaTaarifa">Kutunza taarifa</mat-checkbox></td>
                       </tr>
                       <tr>
-                        <td><mat-checkbox>Kuvutia wateja wapya</mat-checkbox></td>
+                        <td><mat-checkbox formControlName="kuvutaWateja">Kuvutia wateja wapya</mat-checkbox></td>
                       </tr>
                       <tr>
-                          <td><mat-checkbox>Usimamizi wa fedha</mat-checkbox></td>
+                          <td><mat-checkbox formControlName="usimamiziFedha">Usimamizi wa fedha</mat-checkbox></td>
                         
                       </tr>
                     </tbody>
@@ -53,7 +53,7 @@
       <div style="margin-top: 1rem; margin-bottom: 20px; width: 100%; display: flex; justify-content:stretch;">
         <div style="width: 90%;">
           <h4>Educational  Information</h4>
-          <form [formGroup]="trainingGroup" (ngSubmit)="onSubmit()" style="width: 100%;">
+          <form [formGroup]="trainingGroup" style="width: 100%;">
             <span>Je Kuna mafunzo yoyote mnayopokea kwa sasa?</span>
             <div class="row g-1" style="display: flex; flex-wrap: wrap; justify-content: start;">
               <!-- Current Training as Radio Button -->

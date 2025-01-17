@@ -1,77 +1,4 @@
-.stepper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  border-color: #777;
-  border-radius: 10px;
-  border-width: 2px;
-  background-color: #212631;
-  padding: 20px;
-
-}
-.step-content{
-  border-width: 2px;
-  border-color: #777;
-}
-.step {
-  text-align: center;
-  position: relative;
-}
-
-.step .circle {
-  width: 50px;
-  height: 50px;
-  line-height: 40px;
-  border-radius: 50%;
-  display: inline-block;
-  align-items: center;
-  align-self: center;
-  align-content: center;
-  border: 2px solid #ccc;
-  color: #fffefe;
-  font-weight: bold;
-  font-size: 18px;
-  background-color: #007bff;
-}
-
-.step.active .circle {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
-}
-
-.label {
-  margin-top: 8px;
-  font-size: 15px;
-  color: #ffffff;
-}
-
-.step.active .label {
-  color: #007bff;
-  font-weight: 500;
-}
-
-.divider {
-  flex-grow: 1;
-  height: 2px;
-  background-color: #ccc;
-  margin: 0 10px;
-}
-
-.step.active + .divider {
-  background-color: #007bff;
-}
-
-.actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.step-button {
+ .step-button {
   background-color: #212631;  
   color: #ffffff;        
   border: none;
@@ -85,23 +12,34 @@
   transition: background-color 0.3s ease;
 }
 
-/* Hover effect for better UX */
 .step-button:hover:not(:disabled) {
   background-color: #0056b3; 
 }
 
-/* Disabled state styling */
 .step-button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
 
-//  .back{
-//   padding: 10px;
-//   border-color: #100808;
-//   border-width: 2;
-//   border-right-width: 2;
-//   border-right-color: #cccccc;
+.back {
+  padding: 10px;
+  border-color: #cccccc;
+  border-width: 2px;
+  border-right-width: 2px;
+  border-right-color: #cccccc;
+}
 
+ .actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
 
+ .custom-stepper .mat-horizontal-stepper-header-container {
+  background-color: #212631 !important;
+  
+}
+
+//  .custom-stepper .mat-step-header .mat-step-label {
+//   color: #ffffff;
 // }
