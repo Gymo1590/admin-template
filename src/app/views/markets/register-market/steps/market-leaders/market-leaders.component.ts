@@ -24,21 +24,19 @@ import { MatTabsModule } from '@angular/material/tabs';
 })
 export class MarketLeadersComponent implements OnInit {
   @Input() mode: 'create' | 'edit' | 'view' = 'create';
+  @Input() id!: number; 
   @Output() formSubmit = new EventEmitter<any>();
 
   leadersFormArray: FormArray;
   titles: string[] = ['Chairperson', 'Vice Chairperson', 'Secretary', 'Treasurer', 'Member'];
   activeTabIndex = 0;
 
-  constructor(private fb: FormBuilder) {
+  constructor(public fb: FormBuilder) {
     this.leadersFormArray = this.fb.array([]);
   }
 
   ngOnInit() {
     this.initializeForms();
-    if (this.mode === 'view') {
-      //this.leadersFormArray.disable();
-    }
     this.leadersFormArray.valueChanges.subscribe(value => {
       this.formSubmit.emit(value);
     });
@@ -59,6 +57,9 @@ export class MarketLeadersComponent implements OnInit {
         contactPerson: [false],
         canLogin: [false]
       });
+      if (this.mode === 'view') {
+        formGroup.disable();
+      }
       this.leadersFormArray.push(formGroup);
     });
   }
@@ -70,23 +71,23 @@ export class MarketLeadersComponent implements OnInit {
   }
 
   get getLeadersFormData(){
-    return {
-      leaders: this.leadersFormArray.controls.map(control => {
-          const value = control.value;
-          return {
-            firstName: value.firstName,
-            lastName: value.lastName,
-            gender: value.gender,
-            contactPhone: value.contactPhone,
-            email: value.email,
-            designation: value.designation,
-            idNumber: value.idNumber,
-            idName: value.idName,
-            dateOfBirth: value.dateOfBirth,
-            contactPerson: value.contactPerson,
-            canLogin: value.canLogin,
-          };
-      })
-  };
+        return {
+        leaders: this.leadersFormArray.controls.map(control => {
+            const value = control.value;
+            return {
+              firstName: value.firstName,
+              lastName: value.lastName,
+              gender: value.gender,
+              contactPhone: value.contactPhone,
+              email: value.email,
+              designation: value.designation,
+              idNumber: value.idNumber,
+              idName: value.idName,
+              dateOfBirth: value.dateOfBirth,
+              contactPerson: value.contactPerson,
+              canLogin: value.canLogin,
+            };
+        })
+    };
   }
 }

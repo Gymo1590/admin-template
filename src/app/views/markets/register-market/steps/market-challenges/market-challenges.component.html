@@ -53,14 +53,14 @@
       <div style="margin-top: 1rem; margin-bottom: 20px; width: 100%; display: flex; justify-content:stretch;">
         <div style="width: 90%;">
           <h4>Educational  Information</h4>
-          <form [formGroup]="trainingGroup" style="width: 100%;">
+          <form [formGroup]="form" style="width: 100%;">
             <span>Je Kuna mafunzo yoyote mnayopokea kwa sasa?</span>
             <div class="row g-1" style="display: flex; flex-wrap: wrap; justify-content: start;">
               <!-- Current Training as Radio Button -->
               <div style="flex: 1 1 calc(90% - 0.1rem);">
-                <mat-radio-group formControlName="current" (change)="onCurrentTrainingChange()">
-                  <mat-radio-button value="true">Yes</mat-radio-button>
-                  <mat-radio-button value="false">No</mat-radio-button>
+                <mat-radio-group formControlName="trainingReceived" (change)="onCurrentTrainingChange()">
+                  <mat-radio-button [value]="false">No</mat-radio-button>
+                  <mat-radio-button [value]="true">Yes</mat-radio-button>
                 </mat-radio-group>
               </div>
       

@@ -28,7 +28,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 })
 export class MarketChallengesComponent implements OnInit{
   [x: string]: any;
-  @Input() mode: 'create' | 'edit' | 'view' = 'create';  
+  @Input() mode: 'create' | 'edit' | 'view' = 'create';
+  @Input() id!: number;  
   @Output() formSubmit = new EventEmitter<any>();
   
   currentTab: string = 'leadership';
@@ -72,39 +73,41 @@ export class MarketChallengesComponent implements OnInit{
         mahitajiWateja:[false],
         other: [''],
       }),
-      training: this.fb.group({
-        current: [null, Validators.required], 
-        frequency: [''],
-        institution: [''],
-        objective: [''],
-      })
+        trainingReceived: [null, Validators.required], 
+        frequency: [null,Validators.required],
+        institution: ['',Validators.required],
+        objective: ['',Validators.required],
     });
   }
+ 
   ngOnInit() {
-    this.trainingGroup.get('current')?.valueChanges.subscribe((value) => {
-      this.isCurrentTraining = value === 'true';  
+    this.form.get('trainingReceived')?.valueChanges.subscribe((value: boolean) => {
+      this.isCurrentTraining = value === true;
       if (!this.isCurrentTraining) {
-        this.clearTrainingFields(); 
+        this.clearTrainingFields();
       }
     });
+    
     this.form.valueChanges.subscribe(value => {
       this.formSubmit.emit(value);
     });
+    if (this.mode === 'view') {
+      this.form.disable();
+    }
+  }
+  
+  onCurrentTrainingChange() {
+    const currentTraining: boolean = this.form.get('trainingReceived')?.value;
+    this.isCurrentTraining = currentTraining === true;
   }
 
   get trainingGroup(): FormGroup {
     return this.form.get('training') as FormGroup;
   }
 
-  
-  onCurrentTrainingChange() {
-    const currentTraining = this.trainingGroup.get('current')?.value;
-    this.isCurrentTraining = currentTraining === 'true';
-  }
-
   clearTrainingFields() {
-    this.trainingGroup.patchValue({
-      frequency: '',
+    this.form.patchValue({
+      frequency: 0,
       institution: '',
       objective: '',
     });

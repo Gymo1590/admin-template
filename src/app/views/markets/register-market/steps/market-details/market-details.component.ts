@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
@@ -25,18 +25,24 @@ import { MatRadioModule } from '@angular/material/radio';
 export class MarketDetailsComponent implements OnInit{
   [x: string]: any;
   @Input() mode: 'create' | 'edit' | 'view' = 'create';  
+  @Input() id!: number;  
   @Output() formSubmit = new EventEmitter<any>();
 
   detailsForm!: FormGroup;
   constructor(private formBuilder: FormBuilder){}
   name:string = 'Gift Peter';
+
   ngOnInit(): void {
       this.initialize();
       this.detailsForm.valueChanges.subscribe(value => {
         this.formSubmit.emit(value);
       });
-  }
 
+      if (this.mode === 'view') {
+        this.detailsForm.disable();
+      }
+  }
+ 
   initialize(){
     this.detailsForm = this.formBuilder.group({
       marketImage: ['', Validators.required],
@@ -53,18 +59,39 @@ export class MarketDetailsComponent implements OnInit{
       youthCount: ['', Validators.required],
       adultCount: ['', Validators.required],
       loans: ['', Validators.required],
-      trainingReceived: [false, Validators.required],
+
+      bankAgent: [null, Validators.required],
+      mobileAgent: [null, Validators.required],
+      bankAgentCount: ['', Validators.required],
+      mobileAgentCount: ['', Validators.required],
+      refrigerationRoom: [null, Validators.required],
+      refrigerationRoomCount: ['', Validators.required],
+      dayCare: [null, Validators.required],
+      dayCareCount: ['', Validators.required],
+      loanService: [null, Validators.required],
+      loanServiceCount: ['', Validators.required],
+      insuranceService: [null, Validators.required],
+      insuranceServiceCount: ['', Validators.required],
+      savingService: [null, Validators.required],
+      savingServiceCount: ['', Validators.required],
+      paymentService: [null, Validators.required],
+      paymentServiceCount: ['', Validators.required],
     });
+   
   }
 
 
-  onCheckboxChange(event: MatCheckboxChange, controlName: string): void {
-    if (event.checked) {
+  onCheckboxChange(event: MatCheckboxChange,  controlName: string,boolControlName: string): void {
+    if (event.checked && this.mode === 'create') {
       this.detailsForm.addControl(
         controlName,
         this.formBuilder.control(null, [Validators.required, Validators.min(1)])
       );
-    } else {
+      this.detailsForm.addControl(
+        boolControlName,
+        this.formBuilder.control(true).disable
+      );
+    } else  {
       this.detailsForm.removeControl(controlName);
     }
   }

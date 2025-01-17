@@ -24,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class MarketTimeSlotsComponent implements OnInit {
   @Input() mode: 'create' | 'edit' | 'view' = 'create';
+  @Input() id!: number; 
   @Output() formSubmit = new EventEmitter<any>();
 
   timeSlotsForm!: FormGroup;
@@ -55,6 +56,9 @@ export class MarketTimeSlotsComponent implements OnInit {
     });
 
     this.timeSlotsForm = this.fb.group(controls);
+    if (this.mode === 'view') {
+      this.timeSlotsForm.disable();
+    }
   }
 
   openPicker(day: string, type: 'open' | 'close') {

@@ -31,11 +31,7 @@
             <td class="text-center">{{ market.location }}</td>
             <td class="text-center">{{ market.stallNumber }}</td>
             <td class="text-center">{{ market.vendorCount }}</td>
-            <td class="text-center">
-              <span [ngClass]="{ 'text-success': market.status, 'text-danger': !market.status }">
-                {{ market.status ? 'Active' : 'Inactive' }}
-              </span>
-            </td>
+            <td class="text-center">{{ market.zoneCount}} </td>
             <td class="text-center">
               <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>more_vert</mat-icon>
@@ -47,10 +43,10 @@
                 <button mat-menu-item (click)="editUser(market)">
                   <mat-icon>edit</mat-icon> Edit
                 </button>
-                <button mat-menu-item (click)="activateUser(market)">
+                <!-- <button mat-menu-item (click)="activateUser(market)">
                   <mat-icon>{{ market.status ? 'toggle_off' : 'toggle_on' }}</mat-icon>
                   {{ market.status ? 'Deactivate' : 'Activate' }}
-                </button>
+                </button> -->
               </mat-menu>
             </td>
           </tr>

@@ -138,7 +138,7 @@
       <div class="col-md-3 space">
         <mat-checkbox
           [checked]="detailsForm.get('bankAgent')?.value"
-          (change)="onCheckboxChange($event, 'bankAgentCount')"
+          (change)="onCheckboxChange($event, 'bankAgentCount','bankAgent')"
         >
           Wakala wa Benki
         </mat-checkbox>
@@ -160,7 +160,7 @@
       <div class="col-md-3 space" >
         <mat-checkbox
           [checked]="detailsForm.get('mobileAgent')?.value"
-          (change)="onCheckboxChange($event, 'mobileAgentCount')"
+          (change)="onCheckboxChange($event, 'mobileAgentCount','mobileAgent')"
         >
           Wakala wa Mitandao
         </mat-checkbox>
@@ -181,7 +181,7 @@
       <div class="col-md-3 space">
         <mat-checkbox
           [checked]="detailsForm.get('refrigerationRoom')?.value"
-          (change)="onCheckboxChange($event, 'refrigerationRoomCount')"
+          (change)="onCheckboxChange($event, 'refrigerationRoomCount','refrigerationRoom')"
         >
           Vyumba Baridi
         </mat-checkbox>
@@ -202,7 +202,7 @@
       <div class="col-md-3 space">
         <mat-checkbox
           [checked]="detailsForm.get('dayCare')?.value"
-          (change)="onCheckboxChange($event, 'dayCareCount')"
+          (change)="onCheckboxChange($event, 'dayCareCount','dayCare')"
         >
           Day Care
         </mat-checkbox>
@@ -227,7 +227,7 @@
       <div class="col-md-3 space">
         <mat-checkbox
           [checked]="detailsForm.get('loanService')?.value"
-          (change)="onCheckboxChange($event, 'loanServiceCount')"
+          (change)="onCheckboxChange($event, 'loanServiceCount','loanService')"
         >
           Huduma Ya Mikopo
         </mat-checkbox>
@@ -249,7 +249,7 @@
       <div class="col-md-3 space" >
         <mat-checkbox
           [checked]="detailsForm.get('insuranceService')?.value"
-          (change)="onCheckboxChange($event, 'insuranceServiceCount')"
+          (change)="onCheckboxChange($event, 'insuranceServiceCount','insuranceService')"
         >
           Huduma Ya Bima
         </mat-checkbox>
@@ -270,7 +270,7 @@
       <div class="col-md-3 space">
         <mat-checkbox
           [checked]="detailsForm.get('savingService')?.value"
-          (change)="onCheckboxChange($event, 'savingServiceCount')"
+          (change)="onCheckboxChange($event, 'savingServiceCount','savingService')"
         >
           Huduma za Akiba
         </mat-checkbox>
@@ -291,7 +291,7 @@
       <div class="col-md-3 space">
         <mat-checkbox
           [checked]="detailsForm.get('paymentService')?.value"
-          (change)="onCheckboxChange($event, 'paymentServiceCount')"
+          (change)="onCheckboxChange($event, 'paymentServiceCount','paymentService')"
         >
           Malipo
         </mat-checkbox>

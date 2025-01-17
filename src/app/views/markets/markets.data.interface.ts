@@ -4,5 +4,5 @@ export interface MarketDataInterfce{
         location: string;
         stallNumber: string;
         vendorCount: number;
-        status: boolean;
+        zoneCount: number;
 }

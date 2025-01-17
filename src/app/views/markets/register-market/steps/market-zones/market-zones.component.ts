@@ -26,6 +26,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 })
 export class MarketZonesComponent implements OnInit {
   @Input() mode: 'create' | 'edit' | 'view' = 'create';
+  @Input() id!: number; 
   @Output() formSubmit = new EventEmitter<any>();
 
   zoneForm!: FormGroup;
@@ -117,7 +118,7 @@ export class MarketZonesComponent implements OnInit {
 
     return this.fb.group({
       zoneName: ['', Validators.required],
-      productList: productGroup,
+      products: productGroup,
       leaderName: ['', Validators.required],
       leaderPhone: ['', Validators.required],
       leaderPhoneAlt: ['']

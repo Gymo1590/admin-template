@@ -3,9 +3,10 @@
   [(selectedIndex)]="currentStepIndex"
   class="custom-stepper"
 >
-  <mat-step label="Introduction">
+  <mat-step label="Introduction" *ngIf="mode !=='edit'">
     <app-market-intro
       [mode]="mode"
+      [id]="id"
       (formSubmit)="updateFormData('marketIntro', $event)">
     </app-market-intro>
     <div class="actions">
@@ -24,7 +25,8 @@
 
   <mat-step label="Details">
     <app-market-details
-      [mode]="mode"
+    [mode]="mode"
+    [id]="id"
       (formSubmit)="updateFormData('marketDetails', $event)">
     </app-market-details>
     <div class="actions">
@@ -43,7 +45,8 @@
 
   <mat-step label="Challenges">
     <app-market-challenges
-      [mode]="mode"
+    [mode]="mode"
+    [id]="id"
       (formSubmit)="updateFormData('marketChallenges', $event)">
     </app-market-challenges>
     <div class="actions">
@@ -62,7 +65,8 @@
 
   <mat-step label="Zones">
     <app-market-zones
-      [mode]="mode"
+    [mode]="mode"
+    [id]="id"
       (formSubmit)="updateFormData('zones', $event)">
     </app-market-zones>
     <div class="actions">
@@ -81,7 +85,8 @@
 
   <mat-step label="Time Slots">
     <app-market-time-slots
-      [mode]="mode"
+    [mode]="mode"
+    [id]="id"
       (formSubmit)="updateFormData('timeSlots', $event)">
     </app-market-time-slots>
     <div class="actions">
@@ -100,7 +105,8 @@
 
   <mat-step label="Leaders">
     <app-market-leaders
-      [mode]="mode"
+    [mode]="mode"
+    [id]="id"
       (formSubmit)="updateFormData('leaders', $event)">
     </app-market-leaders>
     <div class="actions">
@@ -111,7 +117,7 @@
         [disabled]="currentStepIndex === 0">
         &#x3C; Back
       </button>
-      <button
+      <button *ngIf="mode !== 'view'"
         mat-button
         class="step-button submit"
         (click)="submitData()">
