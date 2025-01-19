@@ -11,7 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
-  selector: 'app-market-challenges',
+  selector: 'app-vendor-challenges',
     imports: [   
    CommonModule,
     ReactiveFormsModule,
@@ -23,8 +23,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatRadioModule,
     MatRadioButton
          ],
-  templateUrl: './market-challenges.component.html',
-  styleUrl: './market-challenges.component.scss'
+  templateUrl: './vendor-challenges.component.html',
+  styleUrl: './vendor-challenges.component.scss'
 })
 export class MarketChallengesComponent implements OnInit{
   [x: string]: any;
@@ -36,30 +36,19 @@ export class MarketChallengesComponent implements OnInit{
   form: FormGroup;
   activeTabIndex = 0;
   isCurrentTraining =false;
+  otherHelp1 = true;
+  otherHelp2=true;
 
-  titles = ['Changamoto za Viongozi','Changamoto za Wachuuzi'];
-
-  challenges = {
-    leadership: ['Kutunza taarifa', 'Kuvutia wateja wapya', 'Usimamizi wa fedha'],
-    vendor: [
-      'Mikopo na fedha',
-      'Usimamizi wa bidhaa sokoni',
-      'Changamoto ya upatikanaji wa bidhaa sokoni',
-      'USHINDANI UMEKUWA',
-      'Mtaji mdogo',
-      'Ukosefu wa umeme (maziwa yanaharibika)',
-      'Mfumuko wa bei za bidhaa na huduma',
-      'MIUNDOMBINU MIBOVU',
-    ],
-  };
+  titles = ['Changamoto Za Mchuuzi','Aina Ya Msaada'];
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      leadershipChallenges: this.fb.group({
-        kutunzaTaarifa:[false],
-        kuvutaWateja:[false],
-        usimamiziFedha:[false],
-        other: [''],
+      vendorHelp: this.fb.group({
+        msaadaFedha:[false],
+        elimuBiashara:[false],
+        uboreshajiBiashara:[false],
+        otherHelp:[false],
+        otherHelpText:['']
       }),
       vendorChallenges: this.fb.group({
         mkopoFedha:[false],
@@ -71,10 +60,10 @@ export class MarketChallengesComponent implements OnInit{
         miundombinuMibovu:[false],
         ushindaniSokoni:[false],
         mahitajiWateja:[false],
-        other: [''],
+        otherChallengeHelp: [false],
+        otherChallengeText:['']
       }),
         trainingReceived: [null, Validators.required], 
-        frequency: [null,Validators.required],
         institution: ['',Validators.required],
         objective: ['',Validators.required],
     });
@@ -87,7 +76,12 @@ export class MarketChallengesComponent implements OnInit{
         this.clearTrainingFields();
       }
     });
-    
+    this.form.get('otherHelp')?.valueChanges.subscribe((value: boolean) => {
+      this.otherHelp1 = value === true;
+    });
+    this.form.get('otherChallengeHelp')?.valueChanges.subscribe((value: boolean) => {
+      this.otherHelp2 = value === true;
+    });
     this.form.valueChanges.subscribe(value => {
       this.formSubmit.emit(value);
     });
@@ -107,14 +101,13 @@ export class MarketChallengesComponent implements OnInit{
 
   clearTrainingFields() {
     this.form.patchValue({
-      frequency: 0,
       institution: '',
       objective: '',
     });
   }
 
-  get leadershipGroup(): FormGroup {
-    return this.form.get('leadershipChallenges') as FormGroup;
+  get vendorHeloGroup(): FormGroup {
+    return this.form.get('vendorHelp') as FormGroup;
   }
 
   get vendorGroup(): FormGroup {

@@ -7,27 +7,13 @@ export const routes: Routes = [
     data: {
       title: 'Vendors'
     },
-    children: [
-      {
-        path: '',
-        redirectTo: 'create',
-        pathMatch: 'full'
-      },
-      // {
-      //   path: 'colors',
-      //   loadComponent: () => import('./colors.component').then(m => m.ColorsComponent),
-      //   data: {
-      //     title: 'Colors'
-      //   }
-      // },
-      // {
-      //   path: 'typography',
-      //   loadComponent: () => import('./typography.component').then(m => m.TypographyComponent),
-      //   data: {
-      //     title: 'Typography'
-      //   }
-      // }
-    ]
-  }
+  },
+  {
+    path: 'create',
+    loadComponent: () => import('./register-vendor/register-vendor.component').then(m => m.RegisterMarketComponent),
+    data: {
+      title: 'Create Vendor'
+    }
+  }, 
 ];
 

@@ -66,7 +66,7 @@ export class MarketsComponent {
   }
   
   createMarket(){
-    this.router.navigate(['markets/create'], { relativeTo: this.activated, queryParams: { mode:'create', id:0 } });
+    this.router.navigate(['create'], { relativeTo: this.activated, queryParams: { mode:'create', id:0 } });
   }
   
   calculatePagination(): void {
@@ -87,7 +87,7 @@ export class MarketsComponent {
   viewUser(market: MarketDataInterfce): void {
     const mode = 'view';
     const id = market.id;
-    this.router.navigate(['markets/create'], {
+    this.router.navigate(['create'], {
       relativeTo: this.activated,
       queryParams: { mode:mode, id:id }
     });
@@ -96,7 +96,7 @@ export class MarketsComponent {
   editUser(market: MarketDataInterfce): void {
     const mode = 'edit';
     const id = market.id;
-    this.router.navigate(['markets/create'], {
+    this.router.navigate(['create'], {
       relativeTo: this.activated,
       queryParams: { mode:mode, id:id }
     });

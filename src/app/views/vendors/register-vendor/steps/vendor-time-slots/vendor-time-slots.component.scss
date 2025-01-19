@@ -1,0 +1,29 @@
+.container {
+  max-width: 900px;
+  padding: 20px;
+}
+
+.row {
+  margin: 0;
+  align-items: center;
+}
+
+.col-md-4 {
+  padding: 10px 15px;
+}
+
+strong {
+  font-size: 16px;
+  display: block;
+  margin-top: 8px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+::ng-deep {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white;
+  }
+}

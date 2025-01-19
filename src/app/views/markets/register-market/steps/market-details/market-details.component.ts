@@ -60,22 +60,22 @@ export class MarketDetailsComponent implements OnInit{
       adultCount: ['', Validators.required],
       loans: ['', Validators.required],
 
-      bankAgent: [null, Validators.required],
-      mobileAgent: [null, Validators.required],
-      bankAgentCount: ['', Validators.required],
-      mobileAgentCount: ['', Validators.required],
-      refrigerationRoom: [null, Validators.required],
-      refrigerationRoomCount: ['', Validators.required],
-      dayCare: [null, Validators.required],
-      dayCareCount: ['', Validators.required],
-      loanService: [null, Validators.required],
-      loanServiceCount: ['', Validators.required],
-      insuranceService: [null, Validators.required],
-      insuranceServiceCount: ['', Validators.required],
-      savingService: [null, Validators.required],
-      savingServiceCount: ['', Validators.required],
-      paymentService: [null, Validators.required],
-      paymentServiceCount: ['', Validators.required],
+      // bankAgent: [null, Validators.required],
+      // mobileAgent: [null, Validators.required],
+      // bankAgentCount: ['', Validators.required],
+      // mobileAgentCount: ['', Validators.required],
+      // refrigerationRoom: [null, Validators.required],
+      // refrigerationRoomCount: ['', Validators.required],
+      // dayCare: [null, Validators.required],
+      // dayCareCount: ['', Validators.required],
+      // loanService: [null, Validators.required],
+      // loanServiceCount: ['', Validators.required],
+      // insuranceService: [null, Validators.required],
+      // insuranceServiceCount: ['', Validators.required],
+      // savingService: [null, Validators.required],
+      // savingServiceCount: ['', Validators.required],
+      // paymentService: [null, Validators.required],
+      // paymentServiceCount: ['', Validators.required],
     });
    
   }
@@ -89,13 +89,12 @@ export class MarketDetailsComponent implements OnInit{
       );
       this.detailsForm.addControl(
         boolControlName,
-        this.formBuilder.control(true).disable
+        this.formBuilder.control(true)
       );
     } else  {
       this.detailsForm.removeControl(controlName);
     }
   }
-  
 
   handleFileError(event: any) {
     const file = event.target.files[0];
@@ -137,8 +136,6 @@ export class MarketDetailsComponent implements OnInit{
   }
 
   get getMarketDetails(){
-    console.log("Challenges:",this.detailsForm.value);
-
     return this.detailsForm.value;
   }
 

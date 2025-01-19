@@ -1,0 +1,32 @@
+.container {
+    max-width: 100%;
+    overflow-x: hidden;   
+  }
+  
+  mat-tab-group {
+    width: 100%;  
+  }
+  
+  form {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;   
+  }
+  
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .col-md-6 {
+    padding: 0 15px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  mat-tab-body {
+    overflow: visible;  
+  }
+  

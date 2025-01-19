@@ -1,0 +1,36 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.row > div {
+  flex: 1 1 calc(45% - 1rem);
+}
+
+@media (max-width: 768px) {
+  .row > div {
+    flex: 1 1 100%;
+  }
+}
+.vendor-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.checkbox-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.checkbox-col {
+  flex: 1 1 calc(33.333% - 1rem);
+  display: flex;
+  align-items: center;
+}
+.challenge-containe{
+  margin: 10px 0 10px 0;
+}

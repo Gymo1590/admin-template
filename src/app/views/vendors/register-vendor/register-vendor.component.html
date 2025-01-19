@@ -1,0 +1,128 @@
+<mat-horizontal-stepper
+  [linear]="true"
+  [(selectedIndex)]="currentStepIndex"
+  class="custom-stepper"
+>
+  <mat-step label="Introduction" *ngIf="mode !=='edit'">
+    <app-vendor-intro
+      [mode]="mode"
+      [id]="id"
+      (formSubmit)="updateFormData('marketIntro', $event)">
+    </app-vendor-intro>
+    <div class="actions">
+      <button
+        mat-button
+        class="step-button back"
+        matStepperPrevious
+        [disabled]="currentStepIndex === 0">
+        &#x3C; Back
+      </button>
+      <button mat-button class="step-button next" matStepperNext>
+        Next &#x3E;
+      </button>
+    </div>
+  </mat-step>
+
+  <mat-step label="Details">
+    <app-vendor-details
+    [mode]="mode"
+    [id]="id"
+      (formSubmit)="updateFormData('marketDetails', $event)">
+    </app-vendor-details>
+    <div class="actions">
+      <button
+        mat-button
+        class="step-button back"
+        matStepperPrevious
+        [disabled]="currentStepIndex === 0">
+        &#x3C; Back
+      </button>
+      <button mat-button class="step-button next" matStepperNext>
+        Next &#x3E;
+      </button>
+    </div>
+  </mat-step>
+
+  <mat-step label="Challenges">
+    <app-vendor-challenges
+    [mode]="mode"
+    [id]="id"
+      (formSubmit)="updateFormData('marketChallenges', $event)">
+    </app-vendor-challenges>
+    <div class="actions">
+      <button
+        mat-button
+        class="step-button back"
+        matStepperPrevious
+        [disabled]="currentStepIndex === 0">
+        &#x3C; Back
+      </button>
+      <button mat-button class="step-button next" matStepperNext>
+        Next &#x3E;
+      </button>
+    </div>
+  </mat-step>
+
+  <mat-step label="Zones">
+    <app-vendor-zones
+    [mode]="mode"
+    [id]="id"
+      (formSubmit)="updateFormData('zones', $event)">
+    </app-vendor-zones>
+    <div class="actions">
+      <button
+        mat-button
+        class="step-button back"
+        matStepperPrevious
+        [disabled]="currentStepIndex === 0">
+        &#x3C; Back
+      </button>
+      <button mat-button class="step-button next" matStepperNext>
+        Next &#x3E;
+      </button>
+    </div>
+  </mat-step>
+
+  <mat-step label="Time Slots">
+    <app-vendor-time-slots
+    [mode]="mode"
+    [id]="id"
+      (formSubmit)="updateFormData('timeSlots', $event)">
+    </app-vendor-time-slots>
+    <div class="actions">
+      <button
+        mat-button
+        class="step-button back"
+        matStepperPrevious
+        [disabled]="currentStepIndex === 0">
+        &#x3C; Back
+      </button>
+      <button mat-button class="step-button next" matStepperNext>
+        Next &#x3E;
+      </button>
+    </div>
+  </mat-step>
+
+  <mat-step label="Leaders">
+    <app-vendor-leaders
+    [mode]="mode"
+    [id]="id"
+      (formSubmit)="updateFormData('leaders', $event)">
+    </app-vendor-leaders>
+    <div class="actions">
+      <button
+        mat-button
+        class="step-button back"
+        matStepperPrevious
+        [disabled]="currentStepIndex === 0">
+        &#x3C; Back
+      </button>
+      <button *ngIf="mode !== 'view'"
+        mat-button
+        class="step-button submit"
+        (click)="submitData()">
+        <mat-icon>send</mat-icon> Submit
+      </button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

@@ -1,0 +1,45 @@
+ .step-button {
+  background-color: #212631;  
+  color: #ffffff;        
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;  
+  transition: background-color 0.3s ease;
+}
+
+.step-button:hover:not(:disabled) {
+  background-color: #0056b3; 
+}
+
+.step-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.back {
+  padding: 10px;
+  border-color: #cccccc;
+  border-width: 2px;
+  border-right-width: 2px;
+  border-right-color: #cccccc;
+}
+
+ .actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+ .custom-stepper .mat-horizontal-stepper-header-container {
+  background-color: #212631 !important;
+  
+}
+
+//  .custom-stepper .mat-step-header .mat-step-label {
+//   color: #ffffff;
+// }

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-vendors',
@@ -34,7 +35,7 @@ export class VendorsComponent {
   ];
   
 
-  constructor() {}
+  constructor(private router:Router, private activated:ActivatedRoute) {}
 
   ngOnInit(): void {
     this.fetchData();
@@ -226,7 +227,10 @@ export class VendorsComponent {
     
     this.calculatePagination();
   }
-  
+  addVendor(){
+    this.router.navigate(['create'], { relativeTo: this.activated, queryParams: { mode:'create', id:0 } });
+
+  }
 
   calculatePagination(): void {
     this.totalPages = Array(Math.ceil(this.filteredData.length / this.pageSize))

@@ -1,0 +1,373 @@
+<div class="container-fluid mt-4">
+  <form [formGroup]="detailsForm" >
+
+    <!-- Row 1: Three Fields -->
+    <div class="row g-3" style="margin-bottom: 15px;">
+      <div class="col-6">
+        <span>Jina La Kwanza</span>
+        <mat-form-field appearance="outline" class="w-100">
+           <input matInput formControlName="firstName" placeholder="Ingiza jina">
+          <mat-error *ngIf="detailsForm.get('firstName')?.hasError('required')">
+            Jina la Kwanza linahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6">
+        <span>Jina La Mwisho</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput formControlName="lastName" placeholder="Ingiza Jina la mwisho">
+          <mat-error *ngIf="detailsForm.get('lastName')?.hasError('required')">
+            Jina La Mwisho inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3" >
+        <span>Gender</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select formControlName="gender"  >
+            <mat-option value="">Chagua Jinsia</mat-option>
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <span>Namba Ya Simu</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="contactPhone" [readonly]="mode === 'view'">
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <span>Namba Ya Simu Mbadala</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Namba Ya Simu Mbadala</mat-label>
+          <input matInput type="number" formControlName="contactPhone" [readonly]="mode === 'view'">
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3">
+        <span>Mkoa</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select formControlName="region"  >
+            <mat-option value="">Chagua Mkoa</mat-option>
+            <mat-option value="Male">Arusha</mat-option>
+            <mat-option value="Female">Dar es salaam</mat-option>
+            <mat-option value="Male">Kilimanjaro</mat-option>
+            <mat-option value="Female">Tanga</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6 col-md-3">
+        <span>Anwani Ya Mchuuzi</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput  formControlName="address" placeholder="Ingiza Anwani ya muuzaji">
+          <mat-error *ngIf="detailsForm.get('address')?.hasError('required')">
+            Anwani ya muuzaji inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6 col-md-3">
+        <span>Hali Ya Mahusiano</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select formControlName="maritalStatus"  >
+            <mat-option value="">Chagua</mat-option>
+            <mat-option value="Male">Nimeoa / Nimeolewa</mat-option>
+            <mat-option value="Female">Sijaoa / Sijaolewa</mat-option>
+            <mat-option value="Male">Nimepewa Talaka</mat-option>
+            <mat-option value="Female">Mjane/Mfiwa</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-6 col-md-3">
+        <span>Tarehe Ya Kuzaliwa</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" [readonly]="mode === 'view'">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+         
+      <div class="col-6 col-md-3">
+        <span>Rika La Umri</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput  formControlName="ageRange" placeholder="">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <span>Barua Pepe</span>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput   formControlName="email" placeholder="Ingiza barua pepe">
+        <mat-error *ngIf="detailsForm.get('email')?.hasError('required')">
+          Barua pepe sio sahihi
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!--  -->
+ <h4 >Vitambulisho</h4>
+    <div class="row">
+      <div class="col-md-3 space">
+        <mat-checkbox
+          [checked]="detailsForm.get('nidaId')?.value"
+          (change)="onCheckboxChange($event, 'nidaNumber','nidaId')"
+        >
+        NIDA
+        </mat-checkbox>
+
+        <mat-form-field *ngIf="detailsForm.get('nidaNumber')" appearance="outline">
+          <mat-label>Namba Ya Kitambulisho</mat-label>
+          <input
+            matInput
+            formControlName="nidaNumber"
+            placeholder="Ingiza Namba Ya NIDA"
+          />
+            <mat-error *ngIf="detailsForm.get('nidaNumber')?.hasError('required')">
+            Namba Ya kitambulisho Inahitajika         
+           </mat-error> 
+     
+        </mat-form-field>
+      </div>
+    
+      <div class="col-md-3 space">
+        <mat-checkbox
+          [checked]="detailsForm.get('licenceId')?.value"
+          (change)="onCheckboxChange($event, 'licenceNumber','licenceId')"
+        >
+          Leseni Ya Udereva
+        </mat-checkbox>
+
+        <mat-form-field *ngIf="detailsForm.get('licenceNumber')" appearance="outline">
+          <mat-label>Namba Ya Kitambulisho</mat-label>
+          <input
+            matInput
+             formControlName="licenceNumber"
+            placeholder="Ingiza Namba Ya Kitambulisho"
+          />
+          <mat-error *ngIf="detailsForm.get('licenceNumber')?.hasError('required')">
+            Namba Ya kitambulisho Inahitajika          </mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="col-md-3 space">
+        <mat-checkbox
+          [checked]="detailsForm.get('votingId')?.value"
+          (change)="onCheckboxChange($event, 'votingNumber','votingId')"
+        >
+          Kitambulisho Cha Kura
+        </mat-checkbox>
+        <mat-form-field *ngIf="detailsForm.get('votingNumber')" appearance="outline">
+          <mat-label>Namba Ya Kitambulisho</mat-label>
+          <input
+            matInput
+             formControlName="votingNumber"
+             placeholder="Ingiza Namba Ya Kitambulisho"
+             />
+          <mat-error *ngIf="detailsForm.get('votingNumber')?.hasError('required')">
+            Namba Ya kitambulisho Inahitajika          </mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="col-md-3 space">
+        <mat-checkbox
+          [checked]="detailsForm.get('otherId')?.value"
+          (change)="onCheckboxChange($event, 'otherIdNumber','otherId')"
+        >
+          Ziada(Bainisha)
+        </mat-checkbox>
+        <mat-form-field *ngIf="detailsForm.get('otherIdNumber')" appearance="outline">
+          <mat-label>Namba Ya Kitambulisho</mat-label>
+          <input
+            matInput
+             formControlName="otherIdNumber"
+             placeholder="Ingiza Namba Ya Kitambulisho"
+             />
+          <mat-error *ngIf="detailsForm.get('otherIdNumber')?.hasError('required')">
+           Namba Ya kitambulisho Inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <h4 class="head-custom">Watu wa dharura</h4>
+    <mat-tab-group [(selectedIndex)]="activeTabIndex">
+     <mat-tab *ngFor="let title of guarantorTitles; let i = index" [label]="title">
+       <div class="tab-content mt-4">
+         <div [formGroup]="geGuarantorForms[i]" >
+           <div class="row g-3">
+   
+             <div class="col-md-6">
+               <mat-form-field appearance="outline" class="w-100">
+                 <mat-label>Jina Kamili</mat-label>
+                 <input matInput formControlName="name" [readonly]="mode === 'view'">
+               </mat-form-field>
+             </div>
+   
+             <div class="col-md-6">
+               <mat-form-field appearance="outline" class="w-100">
+                 <mat-label>Namba Ya Simu</mat-label>
+                 <input matInput type="number" formControlName="phoneNumber" [readonly]="mode === 'view'">
+               </mat-form-field>
+             </div>
+   
+             <div class="col-md-6">
+               <mat-form-field appearance="outline" class="w-100">
+                 <mat-label>Mahusiano</mat-label>
+                 <mat-select formControlName="relationship"  >
+                   <mat-option value="">Select Gender</mat-option>
+                   <mat-option value="Male">Mzazi</mat-option>
+                   <mat-option value="Female">Mke/Mme</mat-option>
+                   <mat-option value="Male">Rafiki</mat-option>
+                   <mat-option value="Female">Mtoto</mat-option>
+                   <mat-option value="Female">Ndugu</mat-option>
+                 </mat-select>
+               </mat-form-field>
+             </div>
+             <div class="col-md-6">
+               <mat-form-field appearance="outline" class="w-100">
+                 <mat-label>Miaka</mat-label>
+                 <input matInput type="number" formControlName="age" [readonly]="mode === 'view'">
+                 <mat-error *ngIf="detailsForm.get('age')?.hasError('required')">
+                  Tafadhali ingiza miaka
+                 </mat-error>
+               </mat-form-field>
+             </div>
+   
+             <div class="col-md-6">
+               <mat-form-field appearance="outline" class="w-100">
+                 <mat-label>Anwani Ya Makazi</mat-label>
+                 <input matInput formControlName="address" [readonly]="mode === 'view'">
+                 <mat-error *ngIf="detailsForm.get('address')?.hasError('required')">
+                   Anwani inahitajika
+                 </mat-error>
+               </mat-form-field>
+             </div>
+   
+             <div class="col-md-6">
+               <mat-form-field appearance="outline" class="w-100">
+                 <mat-label>Email</mat-label>
+                 <input matInput type="email" formControlName="email" [readonly]="mode === 'view'">
+                 <mat-error *ngIf="detailsForm.get('address')?.hasError('required')">
+                  Barua Pepe Sio Sahihi
+                 </mat-error>
+               </mat-form-field>
+             </div>
+           </div>
+         </div>
+       </div>
+      </mat-tab>
+    </mat-tab-group>  
+    <h4 class="head-custom">Hali Ya Biashara</h4>
+    <div class="row g-3">
+
+      <div class="col-6">
+        <span>Mapato Wastani Kwa Siku</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="dailyIncome" [readonly]="mode === 'view'">
+          <mat-error *ngIf="detailsForm.get('dailyIncome')?.hasError('required')">
+            Makadirio Yanahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6">
+        <span>Mapato Wastani Kwa Wiki</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="weeklyIncome" [readonly]="mode === 'view'">
+          <mat-error *ngIf="detailsForm.get('weeklyIncome')?.hasError('required')">
+            Makadirio Yanahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 ">
+        <span>Mapato Wastani Kwa Mwezi</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="monthlyIncome" [readonly]="mode === 'view'">
+          <mat-error *ngIf="detailsForm.get('monthlyIncome')?.hasError('required')">
+            Makadirio Yanahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6">
+        <span>Muamala Wako Wa Juu Zaidi Umewahi Kuufanya</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="largestTransaction" [readonly]="mode === 'view'">
+          <mat-error *ngIf="detailsForm.get('largestTransaction')?.hasError('required')">
+            Makadirio Yanahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <span>Wastani Wa Hela Ya Akiba Uliyonayo Kwa Sasa</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput type="number" formControlName="currentSavingAmt" [readonly]="mode === 'view'">
+          <mat-error *ngIf="detailsForm.get('currentSavingAmt')?.hasError('required')">
+            Makadirio Yanahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <span>Je una akaunti ya Banki?</span>
+    <div class="row g-1" style="display: flex; flex-wrap: wrap; justify-content: start;">
+      <!-- Current Training as Radio Button -->
+      <div style="flex: 1 1 calc(90% - 0.1rem);">
+        <mat-radio-group formControlName="haveBankAccount" >
+          <mat-radio-button [value]="false">Hapana</mat-radio-button>
+          <mat-radio-button [value]="true">Ndio</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    <div [formGroup]="savingsGroup" style="width: 100%;">
+    
+          <table *ngIf="haveBankAccount"    class="table table-striped challenge-table" [formGroup]="savingsGroup">
+            <tbody>
+              <tr>
+                <td><mat-checkbox formControlName="crdb">CRDB</mat-checkbox></td>
+                <td><mat-checkbox formControlName="nmb">NMB</mat-checkbox></td>
+                <td><mat-checkbox formControlName="nbc">NBC</mat-checkbox></td>
+              </tr>
+              <tr>
+                <td><mat-checkbox formControlName="tigo">TIGOPESA/MIXX BY YAS</mat-checkbox></td>
+                <td><mat-checkbox formControlName="mpesa">MPESA</mat-checkbox></td>
+                <td><mat-checkbox formControlName="airtel">AIRTEL MONEY</mat-checkbox></td>
+              </tr>
+              <tr>
+                <td><mat-checkbox formControlName="finca">FINCA</mat-checkbox></td>
+                <td><mat-checkbox formControlName="dtb">DTB</mat-checkbox></td>
+                <td><mat-checkbox formControlName="kcb">KCB</mat-checkbox></td>
+              </tr>
+              <tr>
+                <td><mat-checkbox formControlName="equity">EQUITY</mat-checkbox></td>
+                <td><mat-checkbox formControlName="kibubu">KIBUBU</mat-checkbox></td>
+                <td><mat-checkbox formControlName="maendeleoBank">MAENDELEO BANK</mat-checkbox></td>
+              </tr>
+              <tr>
+                <td><mat-checkbox formControlName="stanbic">STANBIC</mat-checkbox></td>
+                <td><mat-checkbox formControlName="dcb">DCB</mat-checkbox></td>
+                <td><mat-checkbox formControlName="exim">EXIM BANK</mat-checkbox></td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Zaidi</mat-label>
+                    <input
+                      matInput
+                       formControlName="other"
+                       placeholder=""
+                       />
+                  </mat-form-field>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </form>
+
+</div>
+ 
+

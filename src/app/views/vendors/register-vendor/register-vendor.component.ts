@@ -1,23 +1,22 @@
 import { Component, ChangeDetectionStrategy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { MarketLeadersComponent } from './steps/market-leaders/market-leaders.component';
-import { MarketDetailsComponent } from './steps/market-details/market-details.component';
-import { MarketTimeSlotsComponent } from './steps/market-time-slots/market-time-slots.component';
-import { MarketZonesComponent } from './steps/market-zones/market-zones.component';
+import { MarketLeadersComponent } from './steps/vendor-leaders/vendor-leaders.component';
+import { MarketDetailsComponent } from './steps/vendor-details/vendor-details.component';
+import { MarketTimeSlotsComponent } from './steps/vendor-time-slots/vendor-time-slots.component';
+import { MarketZonesComponent } from './steps/vendor-zones/vendor-zones.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
-import { MarketChallengesComponent } from './steps/market-challenges/market-challenges.component';
-import { MarketIntroComponent } from './steps/market-intro/market-intro.component';
+import { MarketChallengesComponent } from './steps/vendor-challenges/vendor-challenges.component';
+import { MarketIntroComponent } from './steps/vendor-intro/vendor-intro.component';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MarketService } from '../market-service.service';
-import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { VendorService } from '../vendor.service';
 
 @Component({
-  selector: 'app-register-market',
-  templateUrl: './register-market.component.html',
-  styleUrls: ['./register-market.component.scss'],
+  selector: 'app-register-vendor',
+  templateUrl: './register-vendor.component.html',
+  styleUrls: ['./register-vendor.component.scss'],
   imports: [
     MarketLeadersComponent,
     MarketDetailsComponent,
@@ -46,20 +45,20 @@ export class RegisterMarketComponent implements OnInit {
   formData: any = {};
   currentStepIndex = 0;  
 
-  constructor(private fb: FormBuilder, private marketService:MarketService, private route:ActivatedRoute, private router: Router) {}
+  constructor(private fb: FormBuilder, private vendorService: VendorService, private route:ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.mode = params['mode'];
       this.id = +params['id'];  
     });
-    if(this.mode !== 'create'){
-      this.setForms(this.id);
-    }
+    // if(this.mode !== 'create'){
+    //   this.setForms(this.id);
+    // }
   }
 
   setForms(id: number) {
-    this.marketService.getMarketById(id).subscribe((res: any) => {
+    this.vendorService.getVendorById(id).subscribe((res: any) => {
       const data = res;
       if (this.marketDetails && data) {
         this.marketDetails.detailsForm.patchValue({
@@ -156,29 +155,30 @@ export class RegisterMarketComponent implements OnInit {
         });
         this.marketTimeSlots.timeSlotsForm.patchValue(timeSlotsData);
       }
-       if (this.marketZones && data?.zones) {
-        const zonesArray = this.marketZones.zones;
-        zonesArray.clear();  
+
+      //  if (this.marketZones && data?.zones) {
+      //   const zonesArray = this.marketZones.zones;
+      //   zonesArray.clear();  
   
-        data.zones.forEach((zone: any) => {
-          const zoneGroup = this.marketZones!.createZone();
-          zoneGroup.patchValue({
-            zoneName: zone.leaderName,  
-            leaderName: zone.leaderName,
-            leaderPhone: zone.leaderPhone,
-            leaderPhoneAlt: zone.leaderPhoneAlt
-          });
+      //   data.zones.forEach((zone: any) => {
+      //     const zoneGroup = this.marketZones!.createZone();
+      //     zoneGroup.patchValue({
+      //       zoneName: zone.leaderName,  
+      //       leaderName: zone.leaderName,
+      //       leaderPhone: zone.leaderPhone,
+      //       leaderPhoneAlt: zone.leaderPhoneAlt
+      //     });
   
-          if (zone.products) {
-            for (const key of this.marketZones!.productKeys) {
-              if (zone.products.hasOwnProperty(key)) {
-                zoneGroup.get('products')?.get(key)?.setValue(zone.products[key]);
-              }
-            }
-          }
-          zonesArray.push(zoneGroup);
-        });
-      }
+      //     if (zone.products) {
+      //       for (const key of this.marketZones!.productKeys) {
+      //         if (zone.products.hasOwnProperty(key)) {
+      //           zoneGroup.get('products')?.get(key)?.setValue(zone.products[key]);
+      //         }
+      //       }
+      //     }
+      //     zonesArray.push(zoneGroup);
+      //   });
+      // }
     });
   }
   
@@ -205,14 +205,14 @@ export class RegisterMarketComponent implements OnInit {
       ...(this.marketDetails?.getMarketDetails || {}),
       ...(this.marketIntro?.getIntroForm || {}),
       ...(this.marketLeaders?.getLeadersFormData || {}),
-      ...(this.marketZones?.getMarketZones || {}),
+     // ...(this.marketZones?.getMarketZones || {}),
       ...(this.marketTimeSlots?.getMarketSlots || {})
     };
   }
 
   submitData() {
     if(this.mode === 'create'){
-      this.marketService.createMarket(this.registerData).subscribe(
+      this.vendorService.createVendor(this.registerData).subscribe(
         (res: any) => {
           alert('Market has been created');
           this.router.navigate(['../'])
@@ -224,7 +224,7 @@ export class RegisterMarketComponent implements OnInit {
       );
     }
     if(this.mode === 'edit'){
-      this.marketService.updateMarket(this.id,this.registerData).subscribe(
+      this.vendorService.updateVendor(this.id,this.registerData).subscribe(
         (res: any) => {
           alert('Market has been updated');
           this.router.navigate(['../'])

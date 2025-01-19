@@ -8,7 +8,7 @@ export const routes: Routes = [
     data: { title: 'Markets' }
   },
   {
-    path: 'markets/create',
+    path: 'create',
     loadComponent: () =>
       import('./register-market/register-market.component').then(m => m.RegisterMarketComponent),
     data: { title: 'Create New Market' }

@@ -1,0 +1,155 @@
+<div class="container-fluid mt-4">
+ <form [formGroup]="financeForm">
+
+  <div class="row">
+    <div class="col-md-3 space">
+      <mat-checkbox
+        [checked]="financeForm.get('loanService')?.value"
+        (change)="onCheckboxChange($event, 'loanServiceCount','loanService')"
+      >
+        Huduma Ya Mikopo
+      </mat-checkbox>
+
+      <mat-form-field *ngIf="financeForm.get('loanServiceCount')" appearance="outline">
+        <mat-label>Idadi ya watoa mikopo</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="loanServiceCount"
+          placeholder="Ingiza idadi"
+        />
+        <mat-error *ngIf="financeForm.get('loanServiceCount')?.hasError('required')">
+          Kadiria idadi ya watoa mikopo
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <div class="col-md-3 space" >
+      <mat-checkbox
+        [checked]="financeForm.get('insuranceService')?.value"
+        (change)="onCheckboxChange($event, 'insuranceServiceCount','insuranceService')"
+      >
+        Huduma Ya Bima
+      </mat-checkbox>
+      <mat-form-field *ngIf="financeForm.get('insuranceServiceCount')" appearance="outline">
+        <mat-label>Idadi ya watoa Bima</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="insuranceServiceCount"
+          placeholder="Ingiza idadi"
+        />
+        <mat-error *ngIf="financeForm.get('insuranceServiceCount')?.hasError('required')">
+          Idadi ya watoa Bima inahitajika
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <div class="col-md-3 space">
+      <mat-checkbox
+        [checked]="financeForm.get('savingService')?.value"
+        (change)="onCheckboxChange($event, 'savingServiceCount','savingService')"
+      >
+        Huduma za Akiba
+      </mat-checkbox>
+      <mat-form-field *ngIf="financeForm.get('savingServiceCount')" appearance="outline">
+        <mat-label>Idadi ya watoa huduma ya Akiba</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="savingServiceCount"
+          placeholder="Ingiza idadi"
+        />
+        <mat-error *ngIf="financeForm.get('savingServiceCount')?.hasError('required')">
+          Idadi ya watoa huduma ya Akiba Inahitajika
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <div class="col-md-3 space">
+      <mat-checkbox
+        [checked]="financeForm.get('paymentService')?.value"
+        (change)="onCheckboxChange($event, 'paymentServiceCount','paymentService')"
+      >
+        Malipo
+      </mat-checkbox>
+      <mat-form-field *ngIf="financeForm.get('paymentServiceCount')" appearance="outline">
+        <mat-label>Idadi ya Malipo ya lazima sokoni</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="paymentServiceCount"
+          placeholder="Ingiza idadi"
+        />
+        <mat-error *ngIf="financeForm.get('paymentServiceCount')?.hasError('required')">
+          Idadi ya Malipo ya lazima sokoni inahitajika
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div> 
+
+  <table  *ngIf="financeForm.get('insuranceServiceCount')"  class="table table-striped challenge-table" [formGroup]="insurancePaymentGroup">
+    <h4>Unalipiaje Bima yako?</h4>
+    <tbody>
+      <tr>
+        <td><mat-checkbox formControlName="mobileMoney">Mitandao Ya Simu</mat-checkbox></td>
+      </tr>
+      <tr>
+        <td><mat-checkbox formControlName="bank">Benki</mat-checkbox></td>
+      </tr>
+      <tr>
+        <td><mat-checkbox formControlName="otherMethod">Nyingine</mat-checkbox></td>
+    </tr>
+    <tr *ngIf="otherHelp2" >
+      <td>
+        <div style="flex: 1 1 calc(45% - 1rem);">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Namna nyingine(Tenganisha na Coma)</mat-label>
+            <input matInput  type="text" formControlName="otherMethodText" />
+          </mat-form-field>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+  <table *ngIf="financeForm.get('savingServiceCount')"   class="table table-striped challenge-table" [formGroup]="savingsGroupBank">
+    <h4>Unatumia Bank Gani Kuweka Akiba?</h4>
+    <tbody>
+      <tr>
+        <td><mat-checkbox formControlName="crdb">CRDB</mat-checkbox></td>
+        <td><mat-checkbox formControlName="nmb">NMB</mat-checkbox></td>
+        <td><mat-checkbox formControlName="nbc">NBC</mat-checkbox></td>
+      </tr>
+      <tr>
+        <td><mat-checkbox formControlName="finca">FINCA</mat-checkbox></td>
+        <td><mat-checkbox formControlName="dtb">DTB</mat-checkbox></td>
+        <td><mat-checkbox formControlName="kcb">KCB</mat-checkbox></td>
+      </tr>
+      <tr>
+        <td><mat-checkbox formControlName="equity">EQUITY</mat-checkbox></td>
+        <td><mat-checkbox formControlName="kibubu">KIBUBU</mat-checkbox></td>
+        <td><mat-checkbox formControlName="maendeleoBank">MAENDELEO BANK</mat-checkbox></td>
+      </tr>
+      <tr>
+        <td><mat-checkbox formControlName="stanbic">STANBIC</mat-checkbox></td>
+        <td><mat-checkbox formControlName="dcb">DCB</mat-checkbox></td>
+        <td><mat-checkbox formControlName="exim">EXIM BANK</mat-checkbox></td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field appearance="outline">
+            <mat-label>Zaidi</mat-label>
+            <input
+              matInput
+               formControlName="otherSavingsBankMethod"
+               placeholder=""
+               />
+          </mat-form-field>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+ </form>
+</div>
