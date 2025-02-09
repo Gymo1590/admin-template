@@ -211,6 +211,7 @@ export class RegisterMarketComponent implements OnInit {
   }
 
   submitData() {
+    console.log(this.registerData);
     if(this.mode === 'create'){
       this.marketService.createMarket(this.registerData).subscribe(
         (res: any) => {

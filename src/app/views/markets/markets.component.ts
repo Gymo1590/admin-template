@@ -44,7 +44,6 @@ export class MarketsComponent {
   ngOnInit(): void {
     this.marketService.getAllMarkets().subscribe((res) => {
       this.data = res;
-      console.log(this.data);
       this.filteredData = [...this.data];   
       this.calculatePagination();
       console.log(this.filteredData);

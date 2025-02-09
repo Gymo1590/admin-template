@@ -16,7 +16,7 @@ import { MatRadioModule, MatRadioButton } from '@angular/material/radio';
   templateUrl: './vendor-intro.component.html',
   styleUrl: './vendor-intro.component.scss'
 })
-export class MarketIntroComponent  implements OnInit {
+export class VendorIntroComponent  implements OnInit {
  [x: string]: any;
   @Input() mode: 'create' | 'edit' | 'view' = 'create';  
   @Input() id!: number; 
@@ -33,7 +33,7 @@ export class MarketIntroComponent  implements OnInit {
     console.log(this.mode);
     console.log(this.id);
     this.introForm = this.fb.group({
-      confirmation: [false, Validators.required]  ,
+      dataClerkConsent: [false, Validators.required]  ,
     })
     if (this.mode === 'view') {
       this.introForm.disable();

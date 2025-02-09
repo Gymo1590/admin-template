@@ -157,7 +157,6 @@ export class MarketChallengesComponent implements OnInit{
   }
 
  get getMarketChallenges(){
-  console.log("Challengeseeeeeeengess:",this.form.value);
   return this.form.value
  }
 }

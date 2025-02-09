@@ -1,0 +1,105 @@
+<div class="container-fluid mt-4">
+  <form  [formGroup]="loansForm">
+    <span>Je Una Mkopo Wowote Kwa Sasa?</span>
+    <mat-radio-group formControlName="activeLoan">
+      <mat-radio-button [value]="true">Ndio </mat-radio-button>
+      <mat-radio-button [value]="false">Hapana </mat-radio-button>
+    </mat-radio-group>
+
+    <div style="margin: 2rem 0 1rem 0;" *ngIf="loansForm.get('activeLoan')?.value">
+      <div class="row g-3">
+      <div class="col-6" >
+      <span>Kiwango cha riba ni kiasi gani?</span>
+      <mat-form-field  appearance="outline">
+        <input matInput  formControlName="activeLoanInterest" type="number" placeholder="Kiwango Cha Riba Cha Mkopo Huo">
+      </mat-form-field>    
+      </div>
+
+      <div class="col-6"> 
+        <mat-checkbox formControlName="isActiveLoanOfficial">Rasmi</mat-checkbox>
+        <mat-checkbox formControlName="isActiveLoanNotOfficial">Sio Rasmi</mat-checkbox>
+      </div>
+    </div>
+
+      <div *ngIf="loansForm.get('isActiveLoanOfficial')?.value" [formGroup]="isLoanOfficialGroup" class="row g-3">
+        <div class="col-6" >
+            <mat-checkbox formControlName="isActiveLoanTelco" class="w-100">Telco Loans(Songesha, Bustisha, Timiza)</mat-checkbox>
+            <mat-checkbox formControlName="isActiveLoanBank" class="w-100">Bank Loans(CRDB, NMB,NBC,...)</mat-checkbox>
+            <mat-checkbox formControlName="isActiveLoanMobileAppp" class="w-100">Mobile App Loans(Branch, Pesa X,Twiga Loan,Bongo Pesa, etc)</mat-checkbox>
+            <mat-checkbox formControlName="isActiveLoanOther" class="w-100">Nyinginezo ,Baininsha</mat-checkbox>
+       </div>
+      <div *ngIf="isLoanOfficialGroup.get('isActiveLoanOther')?.value">
+        <div class="col-6">
+          <span>Baininsha Hapa</span>
+          <mat-form-field appearance="outline" class="w-100">
+             <input matInput formControlName="isActiveLoanOther" placeholder="Ingiza jina">
+            <mat-error *ngIf="isLoanOfficialGroup.get('isActiveLoanOther')?.hasError('required')">
+              Bainisha Hapa
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <h4>Kiwango Cha hali Ya Umaskini</h4>
+    <div class="row g-3" style="margin-bottom: 15px;">
+      <div class="col-6" >
+        <span>Kaya Yako Ipo Mkoa Gani?</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select formControlName="vendorRegion"  >
+            <mat-option value="">Chagua Mkoa</mat-option>
+            <mat-option value="Arusha">Arusha</mat-option>
+            <mat-option value="Dar Es Salaam">Dar Es Salaam</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6" >
+        <span>Nyumba yako imejengwa kwa kutumia nin?</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select formControlName="vendorHousingStatus"  >
+            <mat-option value="">Chagua</mat-option>
+            <mat-option value="Matofali ya kuchomwa, Matofali ya udongo, Mbao na matope, Nyasi na nyingine">Matofali ya kuchomwa, Matofali ya udongo, Mbao na matope, Nyasi na nyingine</mat-option>
+            <mat-option value="Mawe, Matofali ya Saruji, Mbao">Mawe, Matofali ya Saruji, Mbao</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6" >
+        <span>Katika wiki iliyopita, kaya yako ilitumia nishati gani?</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select formControlName="vendorElictricityStatus"  >
+            <mat-option value="">Chagua</mat-option>
+            <mat-option value="Umeme wa jua, Jenereta, Vyanzo binafsi, Gesi asilia">Umeme wa jua, Jenereta, Vyanzo binafsi, Gesi asilia</mat-option>
+            <mat-option value="Taa ya asetilini, Mafuta ya taa, Mishumaa, Kuni, Parafini, Taa ya tochi na nyinginezo">Taa ya asetilini, Mafuta ya taa, Mishumaa, Kuni, Parafini, Taa ya tochi na nyinginezo</mat-option>
+            <mat-option value="Umeme">Umeme</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 mb-3" *ngFor="let question of foodQuestions">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center w-100">
+          <span>{{ question.label }}</span>
+            <mat-form-field appearance="outline" class="w-50">
+            <mat-label>Frequency (1-10)</mat-label>
+            <mat-select [formControlName]="question.controlName" required>
+              <mat-option *ngFor="let num of numbers" [value]="num">{{ num }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="loansForm.get(question.controlName)?.hasError('required')">
+              This field is required
+            </mat-error>
+            <mat-error *ngIf="loansForm.get(question.controlName)?.hasError('min') || loansForm.get(question.controlName)?.hasError('max')">
+              Value must be between 1 and 10
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div> 
+    
+    
+  </form>
+</div>
+

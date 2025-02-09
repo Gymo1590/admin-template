@@ -9,7 +9,7 @@ import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox
 import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
-  selector: 'app-vendor-zones',
+  selector: 'app-vendor-finance',
   standalone: true,
   imports: [
     CommonModule,
@@ -21,10 +21,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatCheckboxModule,
     MatTabsModule
   ],
-  templateUrl: './vendor-zones.component.html',
-  styleUrls: ['./vendor-zones.component.scss']
+  templateUrl: './vendor-finance.component.html',
+  styleUrls: ['./vendor-finance.component.scss']
 })
-export class MarketZonesComponent implements OnInit {
+export class VendorFinancialStatus implements OnInit {
   @Input() mode: 'create' | 'edit' | 'view' = 'create';
   @Input() id!: number; 
   @Output() formSubmit = new EventEmitter<any>();
@@ -113,4 +113,27 @@ constructor(private fb:FormBuilder){
         otherSavingsBankMethod:null
       })
     }
+
+    get vendorFinancialStatus() {
+      const formValue = this.financeForm.value;
+      const savingsValues = formValue.savingsGroupBank;
+      const filteredSavings: { [key: string]: boolean } = {};
+      for (const key in savingsValues) {
+        if (savingsValues[key] === true) {
+          filteredSavings[key] = true;
+        }
+      }
+      formValue.savingsGroupBank = filteredSavings;
+      const insuranceValues = formValue.insurancePayment;
+      const filteredInsurance: { [key: string]: boolean } = {};
+      for (const key in insuranceValues) {
+        if (insuranceValues[key] === true) {
+          filteredInsurance[key] = true;
+        }
+      }
+      formValue.insurancePayment = filteredInsurance;
+    
+      return formValue;
+    }
+    
 }

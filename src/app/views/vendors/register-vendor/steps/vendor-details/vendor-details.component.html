@@ -37,7 +37,10 @@
       <div class="col-6 col-md-3">
         <span>Namba Ya Simu</span>
         <mat-form-field appearance="outline" class="w-100">
-          <input matInput type="number" formControlName="contactPhone" [readonly]="mode === 'view'">
+          <input matInput type="number" formControlName="phoneNumber" [readonly]="mode === 'view'">
+          <mat-error *ngIf="detailsForm.get('phoneNumber')?.hasError('required')">
+            Jina La Mwisho inahitajika
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -45,7 +48,7 @@
         <span>Namba Ya Simu Mbadala</span>
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Namba Ya Simu Mbadala</mat-label>
-          <input matInput type="number" formControlName="contactPhone" [readonly]="mode === 'view'">
+          <input matInput type="number" formControlName="phoneNumberAlt" [readonly]="mode === 'view'">
         </mat-form-field>
       </div>
 
@@ -54,18 +57,17 @@
         <mat-form-field appearance="outline" class="w-100">
           <mat-select formControlName="region"  >
             <mat-option value="">Chagua Mkoa</mat-option>
-            <mat-option value="Male">Arusha</mat-option>
-            <mat-option value="Female">Dar es salaam</mat-option>
-            <mat-option value="Male">Kilimanjaro</mat-option>
-            <mat-option value="Female">Tanga</mat-option>
+            <mat-option *ngFor="let region of regions" value="regionId">
+              {{region.regionName}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div class="col-6 col-md-3">
         <span>Anwani Ya Mchuuzi</span>
         <mat-form-field appearance="outline" class="w-100">
-          <input matInput  formControlName="address" placeholder="Ingiza Anwani ya muuzaji">
-          <mat-error *ngIf="detailsForm.get('address')?.hasError('required')">
+          <input matInput  formControlName="homeAddress" placeholder="Ingiza Anwani ya muuzaji">
+          <mat-error *ngIf="detailsForm.get('homeAddress')?.hasError('required')">
             Anwani ya muuzaji inahitajika
           </mat-error>
         </mat-form-field>
@@ -85,16 +87,19 @@
       <div class="col-6 col-md-3">
         <span>Tarehe Ya Kuzaliwa</span>
         <mat-form-field appearance="outline" class="w-100">
-          <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" [readonly]="mode === 'view'">
+          <input matInput [matDatepicker]="picker" formControlName="dob" [readonly]="mode === 'view'">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="detailsForm.get('dob')?.hasError('required')">
+            Tarehe Ya Kuzaliwa Ni Lazima
+          </mat-error>
         </mat-form-field>
       </div>
          
       <div class="col-6 col-md-3">
         <span>Rika La Umri</span>
         <mat-form-field appearance="outline" class="w-100">
-          <input matInput  formControlName="ageRange" placeholder="">
+          <input matInput  formControlName="ageGroup" placeholder="">
         </mat-form-field>
       </div>
     </div>
@@ -105,6 +110,15 @@
         <input matInput   formControlName="email" placeholder="Ingiza barua pepe">
         <mat-error *ngIf="detailsForm.get('email')?.hasError('required')">
           Barua pepe sio sahihi
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-6 col-md-3">
+      <span>Wategemezi</span>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput type="number" formControlName="dependents" [readonly]="mode === 'view'">
+        <mat-error *ngIf="detailsForm.get('dependents')?.hasError('required')">
+        Idadi Ya Wategemezi Inahitajika
         </mat-error>
       </mat-form-field>
     </div>
@@ -250,7 +264,7 @@
                <mat-form-field appearance="outline" class="w-100">
                  <mat-label>Email</mat-label>
                  <input matInput type="email" formControlName="email" [readonly]="mode === 'view'">
-                 <mat-error *ngIf="detailsForm.get('address')?.hasError('required')">
+                 <mat-error *ngIf="detailsForm.get('email')?.hasError('required')">
                   Barua Pepe Sio Sahihi
                  </mat-error>
                </mat-form-field>

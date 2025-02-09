@@ -23,7 +23,7 @@
     </div>
   </mat-step>
 
-  <mat-step label="Details">
+  <mat-step label="Taarifa">
     <app-vendor-details
     [mode]="mode"
     [id]="id"
@@ -43,7 +43,7 @@
     </div>
   </mat-step>
 
-  <mat-step label="Challenges">
+  <mat-step label="Changamoto">
     <app-vendor-challenges
     [mode]="mode"
     [id]="id"
@@ -63,12 +63,12 @@
     </div>
   </mat-step>
 
-  <mat-step label="Zones">
-    <app-vendor-zones
+  <mat-step label="Biashara">
+    <app-vendor-business
     [mode]="mode"
     [id]="id"
       (formSubmit)="updateFormData('zones', $event)">
-    </app-vendor-zones>
+    </app-vendor-business>
     <div class="actions">
       <button
         mat-button
@@ -83,12 +83,12 @@
     </div>
   </mat-step>
 
-  <mat-step label="Time Slots">
-    <app-vendor-time-slots
+  <mat-step label="Huduma">
+    <app-vendor-finance
     [mode]="mode"
     [id]="id"
       (formSubmit)="updateFormData('timeSlots', $event)">
-    </app-vendor-time-slots>
+    </app-vendor-finance>
     <div class="actions">
       <button
         mat-button
@@ -103,12 +103,12 @@
     </div>
   </mat-step>
 
-  <mat-step label="Leaders">
-    <app-vendor-leaders
+  <mat-step label="Mwisho">
+    <app-vendor-loans
     [mode]="mode"
     [id]="id"
       (formSubmit)="updateFormData('leaders', $event)">
-    </app-vendor-leaders>
+    </app-vendor-loans>
     <div class="actions">
       <button
         mat-button

@@ -1,0 +1,121 @@
+<div class="container-fluid mt-4">
+  <form [formGroup]="businessInformation">
+    <div class="row g-3" style="margin-bottom: 15px;">
+      <div class="col-6 col-md-3">
+        <span>Changua Jina La Zone</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select formControlName="zoneName">
+            <mat-option value="">Chagua Zone</mat-option>
+            <mat-option *ngFor="let zone of zones" [value]="zone.id">
+              {{ zone.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+      
+      <div class="col-6 col-md-3">
+        <span>Namba Ya Kizimba</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput formControlName="stallNumber" type="number" placeholder="Ingiza Jina la mwisho">
+          <mat-error *ngIf="businessInformation.get('stallNumber')?.hasError('required')">
+            Jina La Mwisho inahitajika
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3" >
+        <span>Una Muda Gani Kwenye Biashara?</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select formControlName="businessExperienceYears"  >
+            <mat-option value="">Chagua Muda</mat-option>
+            <mat-option value="1">Chini Ya Mwaka Mmoja</mat-option>
+            <mat-option value="2">Mwaka 1 Hadi 3</mat-option>
+            <mat-option value="3">Miaka 3  Hadi 5</mat-option>
+            <mat-option value="4">Miaka 5 Hadi 10</mat-option>
+            <mat-option value="5">Zaidi Ya 10</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6 col-md-3" >
+        <span>Unamiliki kizimba au umekodisha tu?</span>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select formControlName="stallOwnership"  >
+            <mat-option value="">Aina Ya Umiliki</mat-option>
+            <mat-option value="namiliki">Ndio Namiliki</mat-option>
+            <mat-option value="similiki">Hapana Nimekodisha</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="businessInformation.get('stallOwnership')?.value == 'similiki'">
+        <h4>Tafadhali tunaomba taarifa za mmiliki</h4>
+        <div class="row g-3" style="margin-bottom: 15px;">
+          <div class="col-6">
+            <span>Majina Kamili Ya Mmiliki</span>
+            <mat-form-field appearance="outline" class="w-100">
+               <input matInput formControlName="ownerFullName" placeholder="Ingiza jina">
+              <mat-error *ngIf="businessInformation.get('ownerFullName')?.hasError('required')">
+                Majina Kamili Ya Mmiliki Yanahitajika
+              </mat-error>
+            </mat-form-field>
+          </div>
+    
+          <div class="col-6">
+            <span>Namba Ya Simu</span>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput type="number" formControlName="ownerPhoneNumber" placeholder="Ingiza Namba Ya Simu">
+              <mat-error *ngIf="businessInformation.get('ownerPhoneNumber')?.hasError('required')">
+                Namba Ya Simu inahitajika
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-6">
+            <span>Aina Ya Kitambulisho</span>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select formControlName="ownerIdType"  >
+                <mat-option value="">Chagua Kitambulisho</mat-option>
+                <mat-option value="1">NIDA</mat-option>
+                <mat-option value="2">LESENI YA UDEREVA</mat-option>
+                <mat-option value="3">KITAMBULISHO CHA KURA</mat-option>
+                <mat-option value="4">PASIPOTI YA KUSAFIRIA</mat-option>
+              </mat-select>
+              <mat-error *ngIf="businessInformation.get('ownerIdType')?.hasError('required')">
+               Aina Ya Kitambulisho Inahitajika
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-6">
+            <span>Kitambulisho Cha Taifa</span>
+            <mat-form-field appearance="outline" class="w-100">
+              <input matInput  formControlName="ownerIdNumber" placeholder="Ingiza Namba Ya Kitambulisho">
+              <mat-error *ngIf="businessInformation.get('ownerIdNumber')?.hasError('required')">
+                Kitambulisho Cha Taifa inahitajika
+              </mat-error>
+            </mat-form-field>
+          </div>
+      </div>
+    </div>
+  
+    <h4>Unauza bidhaa gani/zipi?</h4>
+    <div formGroupName="products">
+      <table class="table table-striped challenge-table">
+        <tbody>
+          <tr *ngFor="let row of splitArray(productKeys, 3); let rowIndex = index">
+            <td *ngFor="let product of row">
+              <mat-checkbox [formControlName]="product">
+                {{ productLabels[product] }}
+              </mat-checkbox>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+  </form>
+
+</div>

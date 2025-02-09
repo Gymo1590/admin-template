@@ -26,7 +26,7 @@ import { MatTabsModule } from '@angular/material/tabs';
   templateUrl: './vendor-challenges.component.html',
   styleUrl: './vendor-challenges.component.scss'
 })
-export class MarketChallengesComponent implements OnInit{
+export class VendorChallengesComponent implements OnInit{
   [x: string]: any;
   @Input() mode: 'create' | 'edit' | 'view' = 'create';
   @Input() id!: number;  
@@ -149,7 +149,7 @@ export class MarketChallengesComponent implements OnInit{
     return this.selectedChallenges[group].has(index);
   }
 
- get getMarketChallenges(){
+ get getVendorsChallenges(){
   console.log("Challengeseeeeeeengess:",this.form.value);
   return this.form.value
  }
